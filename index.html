@@ -1,0 +1,172 @@
+---
+layout: default
+title: Open Road Code
+description: Open source software for the road.
+---
+
+<section class="hero" id="home">
+  <div class="container hero__content">
+    <img
+      class="hero__logo"
+      src="{{ '/assets/images/open-road-code-logo.png' | relative_url }}"
+      alt="Open Road Code logo"
+    >
+
+    <p class="eyebrow">Open source software for the road</p>
+
+    <h1>Build the vehicle computing system you actually want.</h1>
+
+    <p class="hero__intro">
+      Open Road Code is an open-source, modular platform for embedded Linux,
+      Raspberry Pi, vehicle data, software-defined radio, navigation, media,
+      physical controls, and custom hardware integration.
+    </p>
+
+    <div class="button-row">
+      <a class="button button--primary" href="#about">Explore the project</a>
+      <a class="button button--secondary" href="#" aria-label="View Open Road Code on GitHub">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container container--narrow">
+    <p class="section-label">What it is</p>
+    <h2>A modular vehicle computing platform</h2>
+
+    <p>
+      Open Road Code provides a clean foundation for building custom vehicle
+      computing systems. It separates hardware access, protocols, controllers,
+      system services, and applications so each part can evolve independently.
+    </p>
+
+    <p>
+      Use it to build a digital cockpit, add vehicle telemetry, integrate radio
+      and navigation, connect physical controls, experiment with new interfaces,
+      or create an entirely different application on top of the same core.
+    </p>
+  </div>
+</section>
+
+<section class="section section--dark" id="pillars">
+  <div class="container">
+    <p class="section-label">The triad</p>
+    <h2>Open. Road. Code.</h2>
+
+    <div class="pillar-grid">
+      <article class="card card--green">
+        <span class="card__number">01</span>
+        <h3>Open</h3>
+        <p>
+          Open source, open interfaces, and an architecture designed for
+          extension rather than lock-in.
+        </p>
+      </article>
+
+      <article class="card card--blue">
+        <span class="card__number">02</span>
+        <h3>Road</h3>
+        <p>
+          Built for real vehicles, real hardware, and real-world experimentation.
+        </p>
+      </article>
+
+      <article class="card card--orange">
+        <span class="card__number">03</span>
+        <h3>Code</h3>
+        <p>
+          Modular software, reusable components, clear boundaries, and practical
+          engineering.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="architecture">
+  <div class="container">
+    <div class="split">
+      <div>
+        <p class="section-label">Architecture</p>
+        <h2>Clean layers. Replaceable parts.</h2>
+
+        <p>
+          Applications do not need to know how hardware works. Hardware does not
+          need to know which application is using it. Each layer has a focused
+          responsibility.
+        </p>
+      </div>
+
+      <div class="architecture" aria-label="Open Road Code software architecture">
+        <div>Applications</div>
+        <span>↓</span>
+        <div>System Services</div>
+        <span>↓</span>
+        <div>Controllers</div>
+        <span>↓</span>
+        <div>Protocols</div>
+        <span>↓</span>
+        <div>Hardware I/O</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark" id="features">
+  <div class="container">
+    <p class="section-label">Current development</p>
+    <h2>Capabilities already taking shape</h2>
+
+    <div class="feature-grid">
+      <div>GPS and NMEA</div>
+      <div>Software-defined radio</div>
+      <div>OBD-II diagnostics</div>
+      <div>Spotify integration</div>
+      <div>Audio management</div>
+      <div>Rotary encoder input</div>
+      <div>BLE peripherals</div>
+      <div>Weather services</div>
+      <div>ADS-B aircraft tracking</div>
+      <div>Raspberry Pi deployment</div>
+      <div>Hardware emulation</div>
+      <div>Custom cockpit applications</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="philosophy">
+  <div class="container container--narrow">
+    <p class="section-label">Why it exists</p>
+    <h2>Vehicle software should be open to experimentation.</h2>
+
+    <blockquote>
+      Modern vehicles contain enormous computing capability, yet most automotive
+      software remains closed, proprietary, and difficult to extend. Open Road
+      Code explores what becomes possible when vehicle computing is built around
+      open architecture and clean software design.
+    </blockquote>
+
+    <p class="status">
+      Open Road Code is under active development and currently targets Raspberry
+      Pi hardware for experimental, enthusiast, educational, and non-safety-critical
+      vehicle computing.
+    </p>
+  </div>
+</section>
+
+<section class="section section--cta">
+  <div class="container container--narrow">
+    <p class="section-label">Get involved</p>
+    <h2>Build something for the road.</h2>
+    <p>
+      Developers, makers, radio enthusiasts, embedded engineers, and curious
+      hardware tinkerers are welcome.
+    </p>
+
+    <div class="button-row button-row--center">
+      <a class="button button--primary" href="#">View on GitHub</a>
+    </div>
+  </div>
+</section>

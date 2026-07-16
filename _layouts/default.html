@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0e12">
+
+    <title>
+      {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
+    </title>
+
+    <meta
+      name="description"
+      content="{{ page.description | default: site.description }}"
+    >
+
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="{{ '/' | relative_url }}">Open Road Code</a>
+
+        <nav aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#pillars">Triad</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#features">Features</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>
+          Open Road Code is an independent open-source project created by Mark Russell.
+        </p>
+        <p>Open source software for the road.</p>
+      </div>
+    </footer>
+  </body>
+</html>

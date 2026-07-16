@@ -1,0 +1,12 @@
+title: Open Road Code
+description: Open source software for the road.
+url: ""
+baseurl: ""
+theme: null
+
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - README.md
+  - LICENSE
