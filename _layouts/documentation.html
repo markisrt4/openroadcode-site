@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<section class="section documentation">
+  <div class="container documentation__layout">
+    <aside class="documentation__sidebar">
+      <a href="/docs/">Documentation</a>
+
+      <nav>
+        {% assign docs = site.docs | sort: "title" %}
+        {% for doc in docs %}
+          <a href="{{ doc.url | relative_url }}">
+            {{ doc.title }}
+          </a>
+        {% endfor %}
+      </nav>
+    </aside>
+
+    <article class="documentation__content">
+      <p class="section-label">Documentation</p>
+      <h1>{{ page.title }}</h1>
+
+      {{ content }}
+
+      {% if page.source_path %}
+        <p class="documentation__source">
+          Source: <code>{{ page.source_path }}</code>
+        </p>
+      {% endif %}
+    </article>
+  </div>
+</section>
