@@ -1,74 +1,12 @@
-name: Build and deploy website
+- name: Import README files
+  run: |
+    python3 website/scripts/import_readmes.py \
+      --source source \
+      --output website/_docs \
+      --tree-output website/_data/docs_tree.json
 
-on:
-  push:
-    branches:
-      - main
+    echo "Generated documentation:"
+    find website/_docs -type f -print
 
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out website
-        uses: actions/checkout@v4
-        with:
-          path: website
-
-      - name: Check out Open Road Code
-        uses: actions/checkout@v4
-        with:
-          repository: markisrt4/OpenRoadCode
-          path: source
-
-      - name: Import README files
-        run: |
-          python3 website/scripts/import_readmes.py \
-            --source source \
-            --output website/_docs
-
-          echo "Generated documentation:"
-          find website/_docs -type f -print
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: website
-          destination: website/_site
-
-      - name: Verify generated site
-        run: |
-          echo "Generated documentation pages:"
-          find website/_site/docs -type f -print || true
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: website/_site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Deploy Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    echo "Generated documentation tree:"
+    cat website/_data/docs_tree.json
