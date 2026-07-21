@@ -1,0 +1,27 @@
+<ul class="docs-tree docs-tree--level-{{ include.level | default: 0 }}">
+  {% for node in include.nodes %}
+    <li class="docs-tree__item">
+      {% if node.url %}
+        <a
+          class="docs-tree__link{% if page.url == node.url %} docs-tree__link--active{% endif %}"
+          href="{{ node.url | relative_url }}"
+        >
+          {{ node.title | default: node.name }}
+        </a>
+      {% else %}
+        <span class="docs-tree__group">
+          {{ node.name }}
+        </span>
+      {% endif %}
+
+      {% if node.children %}
+        {% assign next_level = include.level | default: 0 | plus: 1 %}
+
+        {% include docs-tree.html
+          nodes=node.children
+          level=next_level
+        %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
