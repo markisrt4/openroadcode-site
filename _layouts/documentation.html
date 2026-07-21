@@ -5,29 +5,55 @@ layout: default
 <section class="section documentation">
   <div class="container documentation__layout">
     <aside class="documentation__sidebar">
-      <a href="/docs/">Documentation</a>
+      <a
+        class="documentation__home-link"
+        href="{{ '/docs/' | relative_url }}"
+      >
+        Documentation
+      </a>
 
-      <nav>
-        {% assign docs = site.docs | sort: "title" %}
-        {% for doc in docs %}
-          <a href="{{ doc.url | relative_url }}">
-            {{ doc.title }}
-          </a>
-        {% endfor %}
+      <nav aria-label="Documentation tree">
+        {% include docs-tree.html
+          nodes=site.data.docs_tree
+          level=0
+        %}
       </nav>
     </aside>
 
     <article class="documentation__content">
-      <p class="section-label">Documentation</p>
-      <h1>{{ page.title }}</h1>
+      <nav
+        class="documentation__back documentation__back--top"
+        aria-label="Documentation navigation"
+      >
+        <a href="{{ '/docs/' | relative_url }}">
+          ← Back to Documentation
+        </a>
+      </nav>
 
-      {{ content }}
+      <header class="documentation__header">
+        <p class="section-label">Documentation</p>
+        <h1>{{ page.title }}</h1>
 
-      {% if page.source_path %}
-        <p class="documentation__source">
-          Source: <code>{{ page.source_path }}</code>
-        </p>
-      {% endif %}
+        {% if page.source_path %}
+          <p class="documentation__source">
+            Source:
+            <code>{{ page.source_path }}</code>
+          </p>
+        {% endif %}
+      </header>
+
+      <div class="documentation__body">
+        {{ content }}
+      </div>
+
+      <nav
+        class="documentation__back documentation__back--bottom"
+        aria-label="Documentation navigation"
+      >
+        <a href="{{ '/docs/' | relative_url }}">
+          ← Back to Documentation
+        </a>
+      </nav>
     </article>
   </div>
 </section>
