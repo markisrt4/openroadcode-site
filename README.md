@@ -13,6 +13,24 @@ bundle exec jekyll serve
 
 Open `http://localhost:4000`.
 
+## Generated documentation
+
+The Pages workflow publishes two documentation sets:
+
+- `/docs/` contains guides imported from every `README.md` in OpenRoadCode.
+- `/api/` contains Doxygen HTML generated from every Python file in
+  OpenRoadCode.
+
+To generate the API reference locally, install Doxygen and run:
+
+```bash
+DOXYGEN_INPUT_DIRECTORY=/path/to/OpenRoadCode \
+DOXYGEN_OUTPUT_DIRECTORY=/tmp/openroadcode-doxygen \
+doxygen Doxyfile
+```
+
+Open `/tmp/openroadcode-doxygen/html/index.html`.
+
 ## GitHub Pages deployment
 
 1. Create a GitHub repository, for example `openroadcode-site`.

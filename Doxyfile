@@ -1,0 +1,58 @@
+# Doxygen configuration for the Python API reference generated from OpenRoadCode.
+#
+# The workflow supplies absolute paths for these variables. For a local build:
+#   DOXYGEN_INPUT_DIRECTORY=/path/to/OpenRoadCode \
+#   DOXYGEN_OUTPUT_DIRECTORY=/tmp/openroadcode-doxygen \
+#   doxygen Doxyfile
+
+PROJECT_NAME           = "Open Road Code"
+PROJECT_BRIEF          = "Python API Reference"
+
+OUTPUT_DIRECTORY       = $(DOXYGEN_OUTPUT_DIRECTORY)
+HTML_OUTPUT            = html
+
+INPUT                  = $(DOXYGEN_INPUT_DIRECTORY)
+FILE_PATTERNS           = *.py
+RECURSIVE               = YES
+
+EXCLUDE_PATTERNS        = */.git/* \
+                          */.github/* \
+                          */.venv/* \
+                          */venv/* \
+                          */__pycache__/* \
+                          */build/* \
+                          */dist/*
+
+EXTENSION_MAPPING       = py=Python
+OPTIMIZE_OUTPUT_JAVA    = YES
+EXTRACT_ALL             = YES
+EXTRACT_PRIVATE         = NO
+EXTRACT_STATIC          = YES
+HIDE_UNDOC_MEMBERS      = NO
+HIDE_UNDOC_CLASSES      = NO
+
+FULL_PATH_NAMES         = YES
+STRIP_FROM_PATH         = $(DOXYGEN_INPUT_DIRECTORY)
+
+JAVADOC_AUTOBRIEF       = YES
+MULTILINE_CPP_IS_BRIEF  = YES
+PYTHON_DOCSTRING        = YES
+MARKDOWN_SUPPORT        = YES
+AUTOLINK_SUPPORT        = YES
+
+GENERATE_HTML           = YES
+GENERATE_TREEVIEW       = YES
+DISABLE_INDEX           = NO
+SEARCHENGINE             = YES
+SERVER_BASED_SEARCH     = NO
+
+GENERATE_LATEX          = NO
+GENERATE_XML            = NO
+GENERATE_MAN            = NO
+GENERATE_RTF            = NO
+
+HAVE_DOT                = NO
+QUIET                   = NO
+WARNINGS                = YES
+WARN_IF_UNDOCUMENTED    = NO
+WARN_IF_DOC_ERROR       = YES

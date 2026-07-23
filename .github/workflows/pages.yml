@@ -44,6 +44,21 @@ jobs:
           echo "Generated documentation tree:"
           cat website/_data/docs_tree.json
 
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes doxygen
+
+      - name: Generate Python API reference
+        env:
+          DOXYGEN_INPUT_DIRECTORY: ${{ github.workspace }}/source
+          DOXYGEN_OUTPUT_DIRECTORY: ${{ runner.temp }}/openroadcode-doxygen
+        run: |
+          doxygen website/Doxyfile
+
+          echo "Generated Doxygen HTML:"
+          find "${DOXYGEN_OUTPUT_DIRECTORY}/html" -maxdepth 1 -type f -print
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
@@ -52,6 +67,14 @@ jobs:
         with:
           source: website
           destination: website/_site
+
+      - name: Add API reference to Pages artifact
+        env:
+          DOXYGEN_OUTPUT_DIRECTORY: ${{ runner.temp }}/openroadcode-doxygen
+        run: |
+          mkdir -p website/_site/api
+          cp -a "${DOXYGEN_OUTPUT_DIRECTORY}/html/." website/_site/api/
+          test -f website/_site/api/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

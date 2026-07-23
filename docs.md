@@ -10,9 +10,17 @@ permalink: /docs/
     <h1>Open Road Code Documentation</h1>
 
     <p class="documentation-index__intro">
-      Documentation generated from README files in the Open Road Code
-      source repository.
+      Browse guides imported from README files in the Open Road Code source
+      repository, or explore the generated Python API reference.
     </p>
+
+    <p>
+      <a class="button button--primary" href="{{ '/api/' | relative_url }}">
+        Open Python API Reference
+      </a>
+    </p>
+
+    <h2 class="documentation-index__heading">Project Guides</h2>
 
     <nav
       class="documentation-tree"
