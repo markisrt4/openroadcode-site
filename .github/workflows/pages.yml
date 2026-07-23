@@ -59,6 +59,10 @@ jobs:
           echo "Generated Doxygen HTML:"
           find "${DOXYGEN_OUTPUT_DIRECTORY}/html" -maxdepth 1 -type f -print
 
+          mkdir -p website/api
+          cp -a "${DOXYGEN_OUTPUT_DIRECTORY}/html/." website/api/
+          test -f website/api/index.html
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
@@ -67,14 +71,6 @@ jobs:
         with:
           source: website
           destination: website/_site
-
-      - name: Add API reference to Pages artifact
-        env:
-          DOXYGEN_OUTPUT_DIRECTORY: ${{ runner.temp }}/openroadcode-doxygen
-        run: |
-          mkdir -p website/_site/api
-          cp -a "${DOXYGEN_OUTPUT_DIRECTORY}/html/." website/_site/api/
-          test -f website/_site/api/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
