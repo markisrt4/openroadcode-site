@@ -16,7 +16,7 @@ permalink: /docs/
 
     <p>
       <a class="button button--primary" href="{{ '/api/' | relative_url }}">
-        Open Python API Reference
+        Browse the API Reference
       </a>
     </p>
 

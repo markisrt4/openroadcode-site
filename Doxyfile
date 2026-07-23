@@ -41,6 +41,9 @@ MARKDOWN_SUPPORT        = YES
 AUTOLINK_SUPPORT        = YES
 
 GENERATE_HTML           = YES
+HTML_HEADER             = doxygen/header.html
+HTML_FOOTER             = doxygen/footer.html
+HTML_EXTRA_STYLESHEET   = doxygen/openroadcode-doxygen.css
 GENERATE_TREEVIEW       = YES
 DISABLE_INDEX           = NO
 SEARCHENGINE             = YES

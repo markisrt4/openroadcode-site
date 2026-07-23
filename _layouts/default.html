@@ -22,12 +22,26 @@
       <div class="container site-header__inner">
         <a class="brand" href="{{ '/' | relative_url }}">Open Road Code</a>
 
-        <nav aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="{{ '/docs/' | relative_url }}">Documentation</a>
-          <a href="#pillars">Triad</a>
-          <a href="#architecture">Architecture</a>
-          <a href="#features">Features</a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="{{ '/#about' | relative_url }}">About</a>
+
+          <details class="nav-dropdown">
+            <summary>Documentation</summary>
+            <div class="nav-dropdown__menu">
+              <a href="{{ '/docs/' | relative_url }}">
+                <span>Project Guides</span>
+                <small>Setup, architecture, and how-to guides</small>
+              </a>
+              <a href="{{ '/api/' | relative_url }}">
+                <span>API Reference</span>
+                <small>Python modules, classes, and functions</small>
+              </a>
+            </div>
+          </details>
+
+          <a href="{{ '/#pillars' | relative_url }}">Triad</a>
+          <a href="{{ '/#architecture' | relative_url }}">Architecture</a>
+          <a href="{{ '/#features' | relative_url }}">Features</a>
         </nav>
       </div>
     </header>

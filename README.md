@@ -31,6 +31,9 @@ doxygen Doxyfile
 
 Open `/tmp/openroadcode-doxygen/html/index.html`.
 
+The Doxygen build uses the custom files in `doxygen/` to share the main site's
+header, footer, colors, and typography.
+
 ## GitHub Pages deployment
 
 1. Create a GitHub repository, for example `openroadcode-site`.

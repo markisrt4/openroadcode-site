@@ -1,0 +1,157 @@
+/* Make generated Doxygen pages feel like part of openroadcode.org. */
+body.api-reference {
+  background: #f3f5f7;
+  color: #14181e;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.api-reference #top {
+  background: #f3f5f7;
+}
+
+.api-reference #titlearea {
+  padding: 2.5rem max(1rem, calc((100% - var(--max-width)) / 2));
+  border: 0;
+  background: var(--bg-soft);
+  color: var(--text);
+}
+
+.api-titlearea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.api-reference #projectname {
+  font-family: inherit;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.api-reference #projectbrief {
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.api-reference #main-nav {
+  border-bottom: 1px solid #d5dbe1;
+  background: white;
+}
+
+.api-reference .tabs,
+.api-reference .tabs2,
+.api-reference .tabs3 {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin-inline: auto;
+  background: transparent;
+}
+
+.api-reference .tablist a {
+  background-image: none;
+  color: #4d5661;
+  font-family: inherit;
+  text-shadow: none;
+}
+
+.api-reference .tablist a:hover,
+.api-reference .tablist li.current a {
+  background-image: none;
+  background-color: rgba(22, 139, 209, 0.12);
+  color: #0d6093;
+  text-shadow: none;
+}
+
+.api-reference div.header,
+.api-reference .contents {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin-inline: auto;
+}
+
+.api-reference div.header {
+  border: 0;
+  background: transparent;
+}
+
+.api-reference .headertitle {
+  padding: 3rem 0 1rem;
+}
+
+.api-reference .title {
+  color: #14181e;
+  font-family: inherit;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.api-reference .contents {
+  min-height: 45vh;
+  padding: 1rem 0 5rem;
+}
+
+.api-reference a {
+  color: #0d6da7;
+}
+
+.api-reference .site-header a,
+.api-reference .site-footer,
+.api-reference .site-footer a {
+  color: inherit;
+}
+
+.api-reference .memitem,
+.api-reference .directory,
+.api-reference .fieldtable,
+.api-reference .classindex {
+  overflow: hidden;
+  border: 1px solid #d5dbe1;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.api-reference .memproto,
+.api-reference .memdoc,
+.api-reference .memtitle,
+.api-reference .directory tr.even {
+  background-image: none;
+}
+
+.api-reference .memproto,
+.api-reference .memtitle {
+  background-color: #e8edf2;
+}
+
+.api-reference .memdoc {
+  background-color: white;
+}
+
+.api-reference code,
+.api-reference .fragment {
+  border-color: #d5dbe1;
+  background: #e8edf2;
+}
+
+.api-reference .navpath {
+  border-top: 1px solid #d5dbe1;
+  background: white;
+}
+
+.api-reference .api-footer {
+  color: var(--muted);
+}
+
+@media (max-width: 780px) {
+  .api-titlearea {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .api-reference .sm-dox {
+    min-width: 100%;
+  }
+}
