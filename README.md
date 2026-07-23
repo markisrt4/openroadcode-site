@@ -34,6 +34,16 @@ Open `/tmp/openroadcode-doxygen/html/index.html`.
 The Doxygen build uses the custom files in `doxygen/` to share the main site's
 header, footer, colors, and typography.
 
+### Rebuilding after OpenRoadCode updates
+
+The OpenRoadCode repository sends an `openroadcode-updated` repository dispatch
+event after every push to its default branch. That event starts this site's
+Pages workflow so imported guides and the API reference stay current.
+
+The source repository needs an Actions secret named `SITE_DISPATCH_TOKEN`.
+Use a fine-grained personal access token limited to `openroadcode-site` with
+**Contents: Read and write** permission.
+
 ## GitHub Pages deployment
 
 1. Create a GitHub repository, for example `openroadcode-site`.
