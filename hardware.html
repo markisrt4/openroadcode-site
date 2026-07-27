@@ -1,0 +1,165 @@
+---
+layout: default
+title: Hardware
+description: Supported, in-progress, and planned hardware for Open Road Code.
+permalink: /hardware/
+---
+
+<section class="hardware-hero">
+  <div class="container">
+    <p class="eyebrow">Hardware</p>
+    <div class="hardware-hero__title">
+      <h1>The parts that put code on the road.</h1>
+      <p>
+        A living catalog of the compute, display, positioning, radio, and
+        expansion hardware being explored with Open Road Code.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section hardware-catalog">
+  <div class="container">
+    <div class="status-key" aria-label="Hardware status key">
+      <span><i class="status-dot status-dot--tested"></i>Tested</span>
+      <span><i class="status-dot status-dot--progress"></i>In progress</span>
+      <span><i class="status-dot status-dot--planned"></i>Planned</span>
+    </div>
+
+    <section class="hardware-group" id="compute">
+      <div class="hardware-group__heading">
+        <p class="section-label">Compute + display</p>
+        <h2>The core system</h2>
+      </div>
+      <div class="hardware-card-grid">
+        <article class="hardware-card hardware-card--feature">
+          <div class="hardware-card__visual hardware-tile__media--compute" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--progress">In progress</span>
+            <p class="hardware-card__category">Single-board computer</p>
+            <h3>Raspberry Pi 5</h3>
+            <p>Current-generation compute target for the OpenRoadCode OS image.</p>
+            <dl>
+              <div><dt>Interfaces</dt><dd>USB · GPIO · I²C · SPI · UART</dd></div>
+              <div><dt>OS target</dt><dd>raspberrypi5</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="hardware-card">
+          <div class="hardware-card__visual hardware-tile__media--screen" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--planned">Planned</span>
+            <p class="hardware-card__category">Display</p>
+            <h3>7-inch Pi touchscreen</h3>
+            <p>A compact touch interface for cockpit applications and development.</p>
+            <dl>
+              <div><dt>Interface</dt><dd>DSI · touch</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="hardware-card">
+          <div class="hardware-card__visual hardware-tile__media--pi4" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--progress">In progress</span>
+            <p class="hardware-card__category">Single-board computer</p>
+            <h3>Raspberry Pi 4</h3>
+            <p>A widely available 64-bit platform and initial OS build target.</p>
+            <dl>
+              <div><dt>OS target</dt><dd>raspberrypi4-64</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hardware-group" id="positioning">
+      <div class="hardware-group__heading">
+        <p class="section-label">Positioning</p>
+        <h2>Know where the road leads</h2>
+      </div>
+      <div class="hardware-card-grid hardware-card-grid--two">
+        <article class="hardware-card">
+          <div class="hardware-card__visual hardware-tile__media--gps" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--progress">In progress</span>
+            <p class="hardware-card__category">GPS receiver</p>
+            <h3>NMEA-compatible GPS</h3>
+            <p>Position, speed, heading, and time data through standard NMEA messages.</p>
+            <dl>
+              <div><dt>Interfaces</dt><dd>USB · UART</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="hardware-card">
+          <div class="hardware-card__visual hardware-tile__media--antenna" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--planned">Planned</span>
+            <p class="hardware-card__category">Antenna</p>
+            <h3>External GPS antenna</h3>
+            <p>Improved reception for installations where the compute hardware is enclosed.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hardware-group" id="radio">
+      <div class="hardware-group__heading">
+        <p class="section-label">Radio + expansion</p>
+        <h2>Listen, sense, and control</h2>
+      </div>
+      <div class="hardware-card-grid">
+        <article class="hardware-card hardware-card--feature">
+          <div class="hardware-card__visual hardware-tile__media--sdr" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--progress">In progress</span>
+            <p class="hardware-card__category">Radio</p>
+            <h3>USB software-defined radio</h3>
+            <p>A flexible receiver for radio experimentation, broadcast data, and ADS-B.</p>
+            <dl>
+              <div><dt>Interface</dt><dd>USB</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="hardware-card">
+          <div class="hardware-card__visual hardware-tile__media--i2c" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--planned">Planned</span>
+            <p class="hardware-card__category">Expansion</p>
+            <h3>I²C devices</h3>
+            <p>Sensors, expanders, displays, and controls connected through a shared bus.</p>
+            <dl>
+              <div><dt>Interface</dt><dd>I²C</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="hardware-card">
+          <div class="hardware-card__visual hardware-tile__media--controls" aria-hidden="true"></div>
+          <div class="hardware-card__body">
+            <span class="status-badge status-badge--progress">In progress</span>
+            <p class="hardware-card__category">Input</p>
+            <h3>Rotary encoders</h3>
+            <p>Tactile control for volume, selection, and interaction while on the move.</p>
+            <dl>
+              <div><dt>Interface</dt><dd>GPIO</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="hardware-note">
+      <p class="section-label">A catalog in motion</p>
+      <h2>Support means tested, not merely compatible.</h2>
+      <p>
+        This page will evolve alongside the physical build. Exact models,
+        setup guides, and verified combinations can be added as each part is
+        tested on the rig.
+      </p>
+    </aside>
+  </div>
+</section>

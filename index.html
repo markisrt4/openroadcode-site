@@ -31,6 +31,51 @@ description: Open source software for the road.
   </div>
 </section>
 
+<section class="section hardware-preview" id="hardware">
+  <div class="container">
+    <div class="hardware-preview__heading">
+      <div>
+        <p class="section-label">The physical stack</p>
+        <h2>Built around hardware you can get your hands on.</h2>
+      </div>
+      <p>
+        Open Road Code brings display, positioning, radio, controls, and
+        expansion hardware together around accessible single-board computers.
+      </p>
+    </div>
+
+    <div class="hardware-preview__grid">
+      <a class="hardware-tile hardware-tile--wide" href="{{ '/hardware/' | relative_url }}#compute">
+        <span class="hardware-tile__media hardware-tile__media--compute" aria-hidden="true"></span>
+        <span class="hardware-tile__copy">
+          <small>Compute + display</small>
+          <strong>Pi-powered cockpit</strong>
+        </span>
+      </a>
+      <a class="hardware-tile" href="{{ '/hardware/' | relative_url }}#positioning">
+        <span class="hardware-tile__media hardware-tile__media--gps" aria-hidden="true"></span>
+        <span class="hardware-tile__copy">
+          <small>Positioning</small>
+          <strong>GPS receivers</strong>
+        </span>
+      </a>
+      <a class="hardware-tile" href="{{ '/hardware/' | relative_url }}#radio">
+        <span class="hardware-tile__media hardware-tile__media--sdr" aria-hidden="true"></span>
+        <span class="hardware-tile__copy">
+          <small>Radio</small>
+          <strong>Software-defined radio</strong>
+        </span>
+      </a>
+    </div>
+
+    <div class="button-row button-row--start hardware-preview__action">
+      <a class="button button--dark" href="{{ '/hardware/' | relative_url }}">
+        Explore the hardware
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="about">
   <div class="container container--narrow">
     <p class="section-label">What it is</p>
@@ -91,6 +136,12 @@ description: Open source software for the road.
       <div>
         <p class="section-label">OpenRoadCode OS</p>
         <h2>An operating system built for the whole stack.</h2>
+        <p class="development-notice development-notice--light">
+          <strong>Pre-alpha project</strong>
+          OpenRoadCode OS is at the beginning of development. There is no stable
+          release yet, and the current work is intended for contributors and
+          experimentation.
+        </p>
         <p>
           OpenRoadCode OS is a reproducible, Yocto Project-based Linux image
           designed to turn supported single-board computers into a focused
@@ -116,7 +167,7 @@ description: Open source software for the road.
       </div>
 
       <div class="os-stack" aria-label="OpenRoadCode OS software stack">
-        <span class="os-stack__status">Early development</span>
+        <span class="os-stack__status">Pre-alpha · Active development</span>
         <div>Open Road Code applications</div>
         <div>OpenRoadCode OS image</div>
         <div>Yocto Project + board support</div>

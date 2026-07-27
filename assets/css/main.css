@@ -318,6 +318,278 @@ h3 {
     #e8edf1;
 }
 
+.hardware-preview__heading,
+.hardware-hero__title {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+.hardware-preview__heading > p,
+.hardware-hero__title > p {
+  margin-bottom: 1.5rem;
+}
+
+.hardware-preview__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hardware-tile {
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #151a21;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.hardware-tile__media,
+.hardware-card__visual {
+  display: block;
+  min-height: 260px;
+  background-color: #202731;
+  background-image:
+    radial-gradient(circle at 62% 48%, rgba(132, 206, 31, 0.72) 0 4%, transparent 4.5%),
+    linear-gradient(135deg, transparent 38%, rgba(22, 139, 209, 0.52) 39% 43%, transparent 44%),
+    radial-gradient(ellipse at center, #39434e 0 25%, #161b22 26% 47%, transparent 48%);
+}
+
+.hardware-tile__media--gps {
+  background-image:
+    radial-gradient(circle at 50% 42%, #aab5bf 0 10%, #333c47 11% 26%, transparent 27%),
+    linear-gradient(25deg, transparent 48%, var(--orange) 49% 51%, transparent 52%),
+    radial-gradient(circle at center, #242b34, #12161c 68%);
+}
+
+.hardware-tile__media--sdr {
+  background-image:
+    linear-gradient(90deg, transparent 18%, #202832 19% 24%, #8c98a3 25% 64%, #222a33 65% 72%, transparent 73%),
+    linear-gradient(12deg, transparent 48%, var(--blue) 49% 51%, transparent 52%),
+    radial-gradient(circle at center, #252e38, #11151a 70%);
+}
+
+.hardware-tile__media--screen {
+  background-image:
+    linear-gradient(150deg, transparent 17%, #111820 18% 65%, transparent 66%),
+    radial-gradient(circle at 60% 42%, rgba(22, 139, 209, 0.8), transparent 25%),
+    linear-gradient(120deg, #303945, #12161c);
+}
+
+.hardware-tile__media--pi4 {
+  background-image:
+    radial-gradient(circle at 38% 45%, #b5bec6 0 5%, transparent 6%),
+    radial-gradient(circle at 64% 56%, #181d23 0 13%, transparent 14%),
+    linear-gradient(25deg, transparent 30%, #30764c 31% 68%, transparent 69%),
+    radial-gradient(circle at center, #27303a, #11151a 68%);
+}
+
+.hardware-tile__media--antenna {
+  background-image:
+    radial-gradient(ellipse at 50% 55%, #313a44 0 18%, #12171d 19% 25%, transparent 26%),
+    radial-gradient(circle at center, #252e37, #101419 70%);
+}
+
+.hardware-tile__media--i2c {
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 9%, rgba(241, 90, 22, 0.5) 10% 11%, transparent 12% 20%),
+    linear-gradient(25deg, transparent 30%, #276348 31% 68%, transparent 69%),
+    radial-gradient(circle at center, #26303a, #101419 68%);
+}
+
+.hardware-tile__media--controls {
+  background-image:
+    radial-gradient(circle at 50% 48%, #8e99a3 0 11%, #242b33 12% 18%, transparent 19%),
+    linear-gradient(25deg, transparent 35%, #28313a 36% 65%, transparent 66%),
+    radial-gradient(circle at center, #242d37, #101419 70%);
+}
+
+.hardware-tile__copy {
+  display: block;
+  padding: 1.25rem 1.4rem 1.4rem;
+}
+
+.hardware-tile__copy small,
+.hardware-tile__copy strong {
+  display: block;
+}
+
+.hardware-tile__copy small {
+  margin-bottom: 0.25rem;
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hardware-tile__copy strong {
+  font-size: 1.15rem;
+}
+
+.hardware-preview__action {
+  margin-top: 1.5rem;
+}
+
+.hardware-hero {
+  padding: 9rem 0 7rem;
+  background:
+    radial-gradient(circle at 85% 30%, rgba(241, 90, 22, 0.15), transparent 25rem),
+    radial-gradient(circle at 15% 80%, rgba(22, 139, 209, 0.22), transparent 32rem),
+    var(--bg);
+}
+
+.hardware-hero__title h1 {
+  margin: 0;
+  text-align: left;
+}
+
+.hardware-hero__title > p {
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.status-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #d5dbe1;
+}
+
+.status-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.status-dot,
+.status-badge::before {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  content: "";
+}
+
+.status-dot--tested,
+.status-badge--tested::before {
+  background: var(--green);
+}
+
+.status-dot--progress,
+.status-badge--progress::before {
+  background: var(--blue);
+}
+
+.status-dot--planned,
+.status-badge--planned::before {
+  background: #7f8994;
+}
+
+.hardware-group {
+  padding: 6rem 0;
+  border-bottom: 1px solid #d5dbe1;
+  scroll-margin-top: 5rem;
+}
+
+.hardware-group__heading {
+  max-width: 680px;
+}
+
+.hardware-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.hardware-card-grid--two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.hardware-card {
+  overflow: hidden;
+  border: 1px solid #d5dbe1;
+  border-radius: var(--radius);
+  background: white;
+}
+
+.hardware-card__visual {
+  min-height: 220px;
+}
+
+.hardware-card__body {
+  padding: 1.5rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #edf0f3;
+  color: #4a535d;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.hardware-card__category {
+  margin: 2rem 0 0.25rem;
+  color: #737e89 !important;
+  font-size: 0.72rem !important;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hardware-card h3 {
+  font-size: 1.45rem;
+}
+
+.hardware-card dl {
+  margin: 1.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e5e9;
+}
+
+.hardware-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.hardware-card dt {
+  color: #737e89;
+  font-size: 0.8rem;
+}
+
+.hardware-card dd {
+  margin: 0;
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.hardware-note {
+  max-width: 820px;
+  margin: 6rem auto 0;
+  padding: 3rem;
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hardware-note p {
+  color: var(--muted);
+}
+
 .os-callout {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -366,6 +638,35 @@ h3 {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.development-notice {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--orange);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.95rem !important;
+}
+
+.development-notice strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: inherit;
+}
+
+.development-notice--light {
+  background: rgba(241, 90, 22, 0.08);
+  color: #3d454e !important;
+}
+
+.development-notice--dark {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  border: 1px solid rgba(241, 90, 22, 0.32);
+  border-left: 4px solid var(--orange);
+  background: rgba(241, 90, 22, 0.08);
+  color: var(--muted);
+  text-align: left;
 }
 
 .os-hero {
@@ -603,7 +904,12 @@ blockquote {
   .split,
   .os-callout,
   .target-grid,
-  .build-flow {
+  .build-flow,
+  .hardware-preview__heading,
+  .hardware-hero__title,
+  .hardware-preview__grid,
+  .hardware-card-grid,
+  .hardware-card-grid--two {
     grid-template-columns: 1fr;
   }
 
@@ -622,6 +928,23 @@ blockquote {
 
   .os-hero {
     padding: 6rem 0;
+  }
+
+  .hardware-preview__heading,
+  .hardware-hero__title {
+    gap: 1rem;
+  }
+
+  .hardware-tile {
+    min-height: 320px;
+  }
+
+  .hardware-hero {
+    padding: 6rem 0;
+  }
+
+  .hardware-note {
+    padding: 2rem;
   }
 
   .section {
