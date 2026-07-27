@@ -352,59 +352,38 @@ h3 {
   display: block;
   min-height: 260px;
   background-color: #202731;
-  background-image:
-    radial-gradient(circle at 62% 48%, rgba(132, 206, 31, 0.72) 0 4%, transparent 4.5%),
-    linear-gradient(135deg, transparent 38%, rgba(22, 139, 209, 0.52) 39% 43%, transparent 44%),
-    radial-gradient(ellipse at center, #39434e 0 25%, #161b22 26% 47%, transparent 48%);
+  background-image: url("../images/hardware/raspberry-pi-5.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hardware-tile__media--gps {
-  background-image:
-    radial-gradient(circle at 50% 42%, #aab5bf 0 10%, #333c47 11% 26%, transparent 27%),
-    linear-gradient(25deg, transparent 48%, var(--orange) 49% 51%, transparent 52%),
-    radial-gradient(circle at center, #242b34, #12161c 68%);
+  background-image: url("../images/hardware/gps-receiver.jpg");
 }
 
 .hardware-tile__media--sdr {
-  background-image:
-    linear-gradient(90deg, transparent 18%, #202832 19% 24%, #8c98a3 25% 64%, #222a33 65% 72%, transparent 73%),
-    linear-gradient(12deg, transparent 48%, var(--blue) 49% 51%, transparent 52%),
-    radial-gradient(circle at center, #252e38, #11151a 70%);
+  background-image: url("../images/hardware/usb-sdr.jpg");
 }
 
 .hardware-tile__media--screen {
-  background-image:
-    linear-gradient(150deg, transparent 17%, #111820 18% 65%, transparent 66%),
-    radial-gradient(circle at 60% 42%, rgba(22, 139, 209, 0.8), transparent 25%),
-    linear-gradient(120deg, #303945, #12161c);
+  background-image: url("../images/hardware/touch-display.jpg");
 }
 
 .hardware-tile__media--pi4 {
-  background-image:
-    radial-gradient(circle at 38% 45%, #b5bec6 0 5%, transparent 6%),
-    radial-gradient(circle at 64% 56%, #181d23 0 13%, transparent 14%),
-    linear-gradient(25deg, transparent 30%, #30764c 31% 68%, transparent 69%),
-    radial-gradient(circle at center, #27303a, #11151a 68%);
+  background-image: url("../images/hardware/raspberry-pi-4.jpg");
 }
 
 .hardware-tile__media--antenna {
-  background-image:
-    radial-gradient(ellipse at 50% 55%, #313a44 0 18%, #12171d 19% 25%, transparent 26%),
-    radial-gradient(circle at center, #252e37, #101419 70%);
+  background-image: url("../images/hardware/gps-antenna.jpg");
 }
 
 .hardware-tile__media--i2c {
-  background-image:
-    repeating-linear-gradient(90deg, transparent 0 9%, rgba(241, 90, 22, 0.5) 10% 11%, transparent 12% 20%),
-    linear-gradient(25deg, transparent 30%, #276348 31% 68%, transparent 69%),
-    radial-gradient(circle at center, #26303a, #101419 68%);
+  background-image: url("../images/hardware/i2c-sensor.jpg");
 }
 
 .hardware-tile__media--controls {
-  background-image:
-    radial-gradient(circle at 50% 48%, #8e99a3 0 11%, #242b33 12% 18%, transparent 19%),
-    linear-gradient(25deg, transparent 35%, #28313a 36% 65%, transparent 66%),
-    radial-gradient(circle at center, #242d37, #101419 70%);
+  background-image: url("../images/hardware/rotary-encoder.jpg");
 }
 
 .hardware-tile__copy {
