@@ -754,12 +754,14 @@ h3 {
   background: var(--surface);
 }
 
-.card__number {
+.card__principle {
   display: inline-block;
   margin-bottom: 3rem;
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .card--green {
