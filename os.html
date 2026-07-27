@@ -1,0 +1,132 @@
+---
+layout: default
+title: OpenRoadCode OS
+description: A reproducible Yocto Project-based operating system for Open Road Code.
+permalink: /os/
+---
+
+<section class="os-hero">
+  <div class="container container--narrow">
+    <p class="eyebrow">OpenRoadCode OS</p>
+    <h1>The Linux foundation for the road.</h1>
+    <p class="hero__intro">
+      A reproducible, purpose-built operating system for running Open Road Code
+      on supported single-board computers.
+    </p>
+
+    <div class="button-row">
+      <a
+        class="button button--primary"
+        href="https://github.com/markisrt4/openroadcode-os/tree/agent/bootstrap-yocto-project"
+      >
+        Explore the repository
+      </a>
+      <a
+        class="button button--secondary"
+        href="https://github.com/markisrt4/openroadcode-os/blob/agent/bootstrap-yocto-project/README.md"
+      >
+        Read the build guide
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div>
+        <p class="section-label">Why an OS?</p>
+        <h2>From a collection of software to a complete system.</h2>
+      </div>
+      <div>
+        <p>
+          OpenRoadCode OS packages the platform into a consistent embedded Linux
+          image. Instead of configuring a general-purpose installation by hand,
+          developers can build the same known system from pinned source
+          revisions.
+        </p>
+        <p>
+          It keeps OpenRoadCode policy and recipes in their own Yocto layer,
+          while upstream Poky and hardware BSP layers remain clean and
+          replaceable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container">
+    <p class="section-label">First targets</p>
+    <h2>Three boards. One distribution.</h2>
+    <p class="section-intro">
+      Each target builds the same <code>openroadcode-image</code> with a
+      board-specific kas configuration.
+    </p>
+
+    <div class="target-grid">
+      <article class="target-card">
+        <span class="target-card__type">64-bit</span>
+        <h3>Raspberry Pi 4</h3>
+        <code>raspberrypi4-64</code>
+      </article>
+      <article class="target-card">
+        <span class="target-card__type">Current generation</span>
+        <h3>Raspberry Pi 5</h3>
+        <code>raspberrypi5</code>
+      </article>
+      <article class="target-card">
+        <span class="target-card__type">Rockchip RK3328</span>
+        <h3>Libre Computer Renegade</h3>
+        <code>roc-rk3328-cc</code>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="section-label">How it fits together</p>
+    <h2>A small, reproducible build surface.</h2>
+
+    <div class="build-flow" aria-label="OpenRoadCode OS build flow">
+      <div>
+        <span>01</span>
+        <strong>kas configuration</strong>
+        <p>Selects a board and pins every upstream layer revision.</p>
+      </div>
+      <span class="build-flow__arrow" aria-hidden="true">→</span>
+      <div>
+        <span>02</span>
+        <strong>meta-openroadcode</strong>
+        <p>Defines distribution policy, packages, and the system image.</p>
+      </div>
+      <span class="build-flow__arrow" aria-hidden="true">→</span>
+      <div>
+        <span>03</span>
+        <strong>Flashable image</strong>
+        <p>Produces a machine-specific image from a shared definition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cta">
+  <div class="container container--narrow">
+    <p class="section-label">Project status</p>
+    <h2>Follow the OS from its first build.</h2>
+    <p>
+      OpenRoadCode OS is in early development. The initial Yocto project is
+      taking shape now, and the repository is the best place to follow progress.
+    </p>
+
+    <div class="button-row button-row--center">
+      <a
+        class="button button--primary"
+        href="https://github.com/markisrt4/openroadcode-os/tree/agent/bootstrap-yocto-project"
+      >
+        View OpenRoadCode OS on GitHub
+      </a>
+    </div>
+  </div>
+</section>
