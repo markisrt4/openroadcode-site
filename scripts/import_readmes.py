@@ -158,6 +158,47 @@ def write_jekyll_page(
     print(f"Imported {readme_path} -> {output_path}")
 
 
+
+def write_contributing_page(
+    contributing_path: Path,
+    source_root: Path,
+    output_root: Path,
+    tree: dict[str, Any],
+) -> None:
+    """Publish the repository contributor guide as a first-class doc page."""
+    markdown = contributing_path.read_text(encoding="utf-8")
+    title = extract_title(markdown, "Contributing")
+    markdown = remove_first_heading(markdown)
+
+    path_parts = ("contributing",)
+    slug = "contributing"
+    url = "/docs/contributing/"
+    output_directory = output_root / slug
+    output_directory.mkdir(parents=True, exist_ok=True)
+    output_path = output_directory / "index.md"
+
+    front_matter = (
+        "---\n"
+        "layout: documentation\n"
+        f"title: {json.dumps(title)}\n"
+        f"permalink: {json.dumps(url)}\n"
+        f"source_path: {json.dumps(str(contributing_path.relative_to(source_root)))}\n"
+        "---\n\n"
+    )
+    output_path.write_text(
+        front_matter + markdown + "\n",
+        encoding="utf-8",
+    )
+
+    add_to_tree(
+        tree=tree,
+        path_parts=path_parts,
+        title=title,
+        url=url,
+    )
+    print(f"Imported {contributing_path} -> {output_path}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Import repository README files into a Jekyll site."
@@ -204,6 +245,15 @@ def main() -> int:
     for readme_path in sorted(source_root.rglob("README.md")):
         write_jekyll_page(
             readme_path=readme_path,
+            source_root=source_root,
+            output_root=output_root,
+            tree=tree,
+        )
+
+    contributing_path = source_root / "CONTRIBUTING.md"
+    if contributing_path.is_file():
+        write_contributing_page(
+            contributing_path=contributing_path,
             source_root=source_root,
             output_root=output_root,
             tree=tree,
