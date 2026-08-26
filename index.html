@@ -1,32 +1,22 @@
 ---
 layout: default
 title: Open Road Code
-description: Open source software for the road.
+description: Open-source vehicle computing for Linux, Raspberry Pi, navigation, telemetry, radio, media, and custom hardware.
 ---
 
 <section class="hero" id="home">
   <div class="container hero__content">
-    <img
-      class="hero__logo"
-      src="{{ '/assets/images/open-road-code-logo.png' | relative_url }}"
-      alt="Open Road Code logo"
-    >
-
+    <img class="hero__logo" src="{{ '/assets/images/open-road-code-logo.png' | relative_url }}" alt="Open Road Code logo">
     <p class="eyebrow">Open source software for the road</p>
-
     <h1>Build the vehicle computing system you actually want.</h1>
-
     <p class="hero__intro">
-      Open Road Code is an open-source, modular platform for embedded Linux,
-      Raspberry Pi, vehicle data, software-defined radio, navigation, media,
+      Open Road Code is an open-source vehicle computing platform for embedded Linux,
+      Raspberry Pi, navigation, vehicle telemetry, software-defined radio, media,
       physical controls, and custom hardware integration.
     </p>
-
     <div class="button-row">
-      <a class="button button--primary" href="#about">Explore the project</a>
-      <a class="button button--secondary" href="https://github.com/markisrt4/OpenRoadCode" aria-label="View Open Road Code on GitHub">
-        View on GitHub
-      </a>
+      <a class="button button--primary" href="#about">Explore the platform</a>
+      <a class="button button--secondary" href="https://github.com/markisrt4/OpenRoadCode">View on GitHub</a>
     </div>
   </div>
 </section>
@@ -36,42 +26,30 @@ description: Open source software for the road.
     <div class="hardware-preview__heading">
       <div>
         <p class="section-label">The physical stack</p>
-        <h2>Built around hardware you can get your hands on.</h2>
+        <h2>Real hardware. Replaceable software.</h2>
       </div>
       <p>
-        Open Road Code brings display, positioning, radio, controls, and
-        expansion hardware together around accessible single-board computers.
+        Open Road Code brings compute, display, positioning, radio, vehicle data,
+        sensors, lighting, audio, and physical controls together around accessible
+        Linux hardware.
       </p>
     </div>
-
     <div class="hardware-preview__grid">
       <a class="hardware-tile hardware-tile--wide" href="{{ '/hardware/' | relative_url }}#compute">
         <span class="hardware-tile__media hardware-tile__media--compute" aria-hidden="true"></span>
-        <span class="hardware-tile__copy">
-          <small>Compute + display</small>
-          <strong>Pi-powered cockpit</strong>
-        </span>
+        <span class="hardware-tile__copy"><small>Compute + display</small><strong>Pi-powered cockpit</strong></span>
       </a>
       <a class="hardware-tile" href="{{ '/hardware/' | relative_url }}#positioning">
         <span class="hardware-tile__media hardware-tile__media--gps" aria-hidden="true"></span>
-        <span class="hardware-tile__copy">
-          <small>Positioning</small>
-          <strong>GPS receivers</strong>
-        </span>
+        <span class="hardware-tile__copy"><small>Positioning</small><strong>GPS + browser location</strong></span>
       </a>
       <a class="hardware-tile" href="{{ '/hardware/' | relative_url }}#radio">
         <span class="hardware-tile__media hardware-tile__media--sdr" aria-hidden="true"></span>
-        <span class="hardware-tile__copy">
-          <small>Radio</small>
-          <strong>Software-defined radio</strong>
-        </span>
+        <span class="hardware-tile__copy"><small>Radio</small><strong>Software-defined radio</strong></span>
       </a>
     </div>
-
     <div class="button-row button-row--start hardware-preview__action">
-      <a class="button button--dark" href="{{ '/hardware/' | relative_url }}">
-        Explore the hardware
-      </a>
+      <a class="button button--dark" href="{{ '/hardware/' | relative_url }}">Explore the hardware</a>
     </div>
   </div>
 </section>
@@ -79,18 +57,16 @@ description: Open source software for the road.
 <section class="section" id="about">
   <div class="container container--narrow">
     <p class="section-label">What it is</p>
-    <h2>A modular vehicle computing platform</h2>
-
+    <h2>One platform, multiple vehicle interfaces</h2>
     <p>
-      Open Road Code provides a clean foundation for building custom vehicle
-      computing systems. It separates hardware access, protocols, controllers,
-      system services, and applications so each part can evolve independently.
+      Open Road Code provides a modular foundation for custom vehicle computing.
+      Hardware access, protocols, controllers, producer services, messaging, and
+      applications are separated so each part can evolve independently.
     </p>
-
     <p>
-      Use it to build a digital cockpit, add vehicle telemetry, integrate radio
-      and navigation, connect physical controls, experiment with new interfaces,
-      or create an entirely different application on top of the same core.
+      The same platform can drive a touchscreen cockpit, terminal interface, web
+      frontend, development workstation, or future embedded application without
+      forcing every interface to own the underlying hardware.
     </p>
   </div>
 </section>
@@ -100,92 +76,22 @@ description: Open source software for the road.
     <p class="section-label">The triad</p>
     <h2>Open. Road. Code.</h2>
     <p class="section-intro">
-      More than a name, the triad defines the project’s direction. Open Road
-      Code is positioning itself as an open, configurable computing platform
-      for vehicles—one that owners, builders, and developers can understand,
-      adapt, and extend.
+      The name describes the project: an open, configurable computing platform for
+      vehicles that owners, builders, and developers can understand, adapt, and extend.
     </p>
-
     <div class="pillar-grid">
       <article class="card card--green">
-        <span class="card__principle">Freedom to build</span>
-        <h3>Open</h3>
-        <p>
-          Open-source software, documented interfaces, and accessible hardware
-          keep the platform inspectable and adaptable. The goal is a system
-          shaped by its users, without locking core capabilities behind a
-          single vendor or fixed product.
-        </p>
+        <span class="card__principle">Freedom to build</span><h3>Open</h3>
+        <p>Open-source software, documented interfaces, accessible hardware, and local-first capabilities keep the platform inspectable and adaptable.</p>
       </article>
-
       <article class="card card--blue">
-        <span class="card__principle">Designed for vehicles</span>
-        <h3>Road</h3>
-        <p>
-          Vehicle data, positioning, radio, media, displays, and physical
-          controls belong on one coherent computing platform. It is built for
-          real hardware, changing conditions, and experimentation beyond the
-          workbench.
-        </p>
+        <span class="card__principle">Designed for vehicles</span><h3>Road</h3>
+        <p>Positioning, telemetry, radio, media, displays, lighting, sensors, and physical controls belong on one coherent platform built for real hardware.</p>
       </article>
-
       <article class="card card--orange">
-        <span class="card__principle">Configured through software</span>
-        <h3>Code</h3>
-        <p>
-          Modular services and reusable components make the system configurable
-          instead of prescribed. Developers can replace one part, add a new
-          capability, or build a completely different vehicle experience on
-          the same foundation.
-        </p>
+        <span class="card__principle">Configured through software</span><h3>Code</h3>
+        <p>Interfaces, adapters, services, message contracts, and reusable controllers let developers replace a component without rebuilding the entire system.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<section class="section section--os" id="os">
-  <div class="container">
-    <div class="os-callout">
-      <div>
-        <p class="section-label">OpenRoadCode OS</p>
-        <h2>An operating system built for the whole stack.</h2>
-        <p class="development-notice development-notice--light">
-          <strong>Pre-alpha project</strong>
-          OpenRoadCode OS is at the beginning of development. There is no stable
-          release yet, and the current work is intended for contributors and
-          experimentation.
-        </p>
-        <p>
-          OpenRoadCode OS is a reproducible, Yocto Project-based Linux image
-          designed to turn supported single-board computers into a focused
-          foundation for Open Road Code.
-        </p>
-        <p>
-          The new project brings the distribution, image recipes, package
-          groups, and board configuration together—starting with Raspberry Pi 4,
-          Raspberry Pi 5, and Libre Computer Renegade.
-        </p>
-
-        <div class="button-row button-row--start">
-          <a class="button button--primary" href="{{ '/os/' | relative_url }}">
-            Explore OpenRoadCode OS
-          </a>
-          <a
-            class="button button--dark"
-            href="https://github.com/markisrt4/openroadcode-os/tree/agent/bootstrap-yocto-project"
-          >
-            View the early work
-          </a>
-        </div>
-      </div>
-
-      <div class="os-stack" aria-label="OpenRoadCode OS software stack">
-        <span class="os-stack__status">Pre-alpha · Active development</span>
-        <div>Open Road Code applications</div>
-        <div>OpenRoadCode OS image</div>
-        <div>Yocto Project + board support</div>
-        <div>Supported hardware</div>
-      </div>
     </div>
   </div>
 </section>
@@ -195,25 +101,24 @@ description: Open source software for the road.
     <div class="split">
       <div>
         <p class="section-label">Architecture</p>
-        <h2>Clean layers. Replaceable parts.</h2>
-
+        <h2>Hardware produces data. Applications consume it.</h2>
         <p>
-          Applications do not need to know how hardware works. Hardware does not
-          need to know which application is using it. Each layer has a focused
-          responsibility.
+          Domain services own physical devices or simulation sources and publish
+          canonical telemetry. Applications consume that shared state instead of
+          opening competing GPS, IMU, or OBD-II connections just to draw a screen.
+        </p>
+        <p>
+          Continuous telemetry uses ZeroMQ publish/subscribe messaging. Commands
+          that need acknowledgement can use request/reply interfaces. Runtime
+          composition selects real, simulated, stub, or unconfigured implementations.
         </p>
       </div>
-
-      <div class="architecture" aria-label="Open Road Code software architecture">
-        <div>Applications</div>
-        <span>↓</span>
-        <div>System Services</div>
-        <span>↓</span>
-        <div>Controllers</div>
-        <span>↓</span>
-        <div>Protocols</div>
-        <span>↓</span>
-        <div>Hardware I/O</div>
+      <div class="architecture" aria-label="Open Road Code runtime architecture">
+        <div>carUi · carTui · webUi</div><span>↓</span>
+        <div>Shared telemetry + controllers</div><span>↓</span>
+        <div>ZeroMQ messaging</div><span>↓</span>
+        <div>Navigation + automotive services</div><span>↓</span>
+        <div>Hardware · browser · simulation</div>
       </div>
     </div>
   </div>
@@ -221,22 +126,35 @@ description: Open source software for the road.
 
 <section class="section section--dark" id="features">
   <div class="container">
-    <p class="section-label">Current development</p>
-    <h2>Capabilities already taking shape</h2>
-
+    <p class="section-label">Working and active development</p>
+    <h2>A vehicle lab that keeps growing</h2>
     <div class="feature-grid">
-      <div>GPS and NMEA</div>
-      <div>Software-defined radio</div>
-      <div>OBD-II diagnostics</div>
-      <div>Spotify integration</div>
-      <div>Audio management</div>
-      <div>Rotary encoder input</div>
-      <div>BLE peripherals</div>
-      <div>Weather services</div>
-      <div>ADS-B aircraft tracking</div>
-      <div>Raspberry Pi deployment</div>
-      <div>Hardware emulation</div>
-      <div>Custom cockpit applications</div>
+      <div>Touchscreen car UI</div><div>Terminal car UI</div><div>Web frontend</div>
+      <div>GPSD + browser positioning</div><div>Navigation services</div><div>ZeroMQ telemetry bus</div>
+      <div>OBD-II vehicle telemetry</div><div>Software-defined radio</div><div>ADS-B aircraft tracking</div>
+      <div>Spotify + music video integration</div><div>PipeWire audio control</div><div>BLE cabin lighting</div>
+      <div>Rotary encoders + GPIO controls</div><div>Environmental + IMU sensors</div><div>Hardware simulation and stubs</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--os" id="os">
+  <div class="container">
+    <div class="os-callout">
+      <div>
+        <p class="section-label">OpenRoadCode OS</p>
+        <h2>A focused Linux image for the whole stack.</h2>
+        <p class="development-notice development-notice--light"><strong>Pre-alpha project</strong> OpenRoadCode OS is in early development and intended for contributors and experimentation.</p>
+        <p>A separate Yocto Project-based effort is exploring reproducible embedded Linux images tailored to Open Road Code and supported single-board computers.</p>
+        <div class="button-row button-row--start">
+          <a class="button button--primary" href="{{ '/os/' | relative_url }}">Explore OpenRoadCode OS</a>
+          <a class="button button--dark" href="https://github.com/markisrt4/openroadcode-os">View the OS repository</a>
+        </div>
+      </div>
+      <div class="os-stack" aria-label="OpenRoadCode OS software stack">
+        <span class="os-stack__status">Pre-alpha · Active development</span>
+        <div>Open Road Code applications</div><div>OpenRoadCode OS image</div><div>Yocto Project + board support</div><div>Supported hardware</div>
+      </div>
     </div>
   </div>
 </section>
@@ -245,17 +163,14 @@ description: Open source software for the road.
   <div class="container container--narrow">
     <p class="section-label">Why it exists</p>
     <h2>Vehicle software should be open to experimentation.</h2>
-
     <blockquote>
       Modern vehicles contain enormous computing capability, yet most automotive
-      software remains closed, proprietary, and difficult to extend. Open Road
-      Code explores what becomes possible when vehicle computing is built around
-      open architecture and clean software design.
+      software remains closed, proprietary, and difficult to extend. Open Road Code
+      explores what becomes possible when the independent computing layer is yours.
     </blockquote>
-
     <p class="status">
-      Open Road Code is under active development and currently targets Raspberry
-      Pi hardware for experimental, enthusiast, educational, and non-safety-critical
+      Open Road Code is under active development and currently targets Raspberry Pi
+      and Linux systems for experimental, enthusiast, educational, and non-safety-critical
       vehicle computing.
     </p>
   </div>
@@ -265,18 +180,10 @@ description: Open source software for the road.
   <div class="container container--narrow">
     <p class="section-label">Get involved</p>
     <h2>Build something for the road.</h2>
-    <p>
-      Developers, makers, radio enthusiasts, embedded engineers, and curious
-      hardware tinkerers are welcome.
-    </p>
-
+    <p>Developers, makers, radio enthusiasts, embedded engineers, and curious hardware tinkerers are welcome.</p>
     <div class="button-row button-row--center">
-      <a class="button button--primary" href="{{ '/docs/contributing/' | relative_url }}">
-        Start contributing
-      </a>
-      <a class="button button--secondary" href="https://github.com/markisrt4/OpenRoadCode">
-        View on GitHub
-      </a>
+      <a class="button button--primary" href="{{ '/docs/contributing/' | relative_url }}">Start contributing</a>
+      <a class="button button--secondary" href="https://github.com/markisrt4/OpenRoadCode">View on GitHub</a>
     </div>
   </div>
 </section>
