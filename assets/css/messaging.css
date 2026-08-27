@@ -1,37 +1,107 @@
-.messaging-doc .prose { max-width: 1080px; }
-.messaging-doc h2 { margin-top: 4rem; font-size: clamp(1.8rem, 4vw, 2.6rem); }
-.messaging-doc h2:first-child { margin-top: 0; }
-.messaging-doc h3 { margin-top: 2.5rem; }
-.messaging-doc a { color: #0b6fae; overflow-wrap: anywhere; }
-.messaging-doc pre { margin: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.messaging-doc .architecture-diagram { max-width:100%; margin:2rem 0 3rem; overflow-x:auto; border-radius:14px; background:#0b0e12; color:#f5f7fa; -webkit-overflow-scrolling:touch; }
-.messaging-doc .architecture-diagram pre { min-width:700px; padding:1.5rem; font-size:.86rem; line-height:1.45; }
-.messaging-table-wrap { width:100%; margin:1.5rem 0 3rem; border:1px solid #d5dbe1; border-radius:12px; background:white; overflow:hidden; }
-.messaging-table-wrap table { width:100%; border-collapse:collapse; font-size:.9rem; line-height:1.45; }
-.messaging-table-wrap th,.messaging-table-wrap td { padding:.9rem 1rem; border-bottom:1px solid #e1e5e9; text-align:left; vertical-align:top; }
-.messaging-table-wrap th { background:#edf0f3; font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; }
-.messaging-table-wrap tr:last-child td { border-bottom:0; }
-.messaging-doc .highlight,.messaging-doc > .container > pre { max-width:100%; overflow-x:auto; margin:1.25rem 0 2rem; border-radius:12px; }
-.messaging-doc .highlight pre,.messaging-doc > .container > pre { padding:1rem; background:#0b0e12; color:#f5f7fa; }
-.messaging-doc .callout { margin-top:3rem; padding:1.25rem 1.4rem; border-left:4px solid var(--orange); border-radius:0 10px 10px 0; background:rgba(241,90,22,.08); }
+.messaging-doc { padding-top:5rem; }
+.messaging-doc h2 { margin-bottom:.8rem; }
+.messaging-doc a { color:#0b6fae; }
+.messaging-intro { display:grid; grid-template-columns:1fr .8fr; gap:3rem; align-items:center; margin-bottom:2.5rem; }
+.messaging-intro p { max-width:680px; }
+.messaging-flow { padding:1.4rem; border-radius:18px; background:#11161d; color:#fff; text-align:center; }
+.flow-node { width:max-content; margin:auto; padding:.55rem 1.2rem; border:1px solid rgba(255,255,255,.18); border-radius:999px; font-weight:800; }
+.flow-arrow { padding:.25rem; color:#84ce1f; font-size:1.4rem; }
+.flow-split { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+.flow-split > div { padding:.8rem .5rem; border-radius:12px; background:#202731; }
+.flow-split strong,.flow-split small { display:block; }
+.flow-split small { color:#aeb7c4; font-size:.75rem; }
+.flow-split--bottom { margin-top:.7rem; }
+.flow-split--bottom > div { background:#171c24; }
+.endpoint-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:5rem; }
+.endpoint-card { display:flex; gap:1rem; min-width:0; padding:1.2rem; border:1px solid #d8dde2; border-radius:16px; background:#fff; }
+.endpoint-card > div { min-width:0; }
+.endpoint-card small,.endpoint-card code { display:block; }
+.endpoint-card small { margin-bottom:.15rem; color:#68727d; font-weight:700; }
+.endpoint-card code { overflow-wrap:anywhere; font-size:.82rem; font-weight:800; }
+.endpoint-card p { margin:.55rem 0 0; font-size:.9rem; line-height:1.45; }
+.endpoint-icon { display:grid; width:3rem; height:3rem; flex:0 0 3rem; place-items:center; border-radius:12px; background:#84ce1f; color:#101418; font-size:.7rem; font-weight:900; }
+.endpoint-icon--blue { background:#168bd1; color:#fff; }
+.endpoint-icon--orange { background:#f15a16; color:#fff; }
+.message-section { margin-top:5rem; }
+.message-section__heading { display:grid; grid-template-columns:1fr 150px; gap:2rem; align-items:center; margin-bottom:1.5rem; }
+.message-section__heading p { max-width:720px; }
+.message-thumb { width:140px; height:90px; justify-self:end; border-radius:16px; background-position:center; background-size:cover; box-shadow:0 8px 24px rgba(20,24,30,.12); }
+.message-thumb--gps { background-image:url('../images/hardware/gps-receiver.jpg'); }
+.message-thumb--pi { background-image:url('../images/hardware/raspberry-pi-5.jpg'); }
+.message-thumb--controls { background-image:url('../images/hardware/rotary-encoder.jpg'); }
+.interface-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.interface-card { min-width:0; padding:1.35rem; border:1px solid #d8dde2; border-radius:18px; background:#fff; box-shadow:0 5px 18px rgba(20,24,30,.04); }
+.interface-card__top { display:flex; justify-content:space-between; gap:.7rem; align-items:center; margin-bottom:1rem; }
+.type-pill,.status-pill { display:inline-flex; padding:.3rem .55rem; border-radius:999px; font-size:.65rem; font-weight:900; letter-spacing:.06em; }
+.type-pill { background:rgba(132,206,31,.15); color:#477600; }
+.type-pill--blue { background:rgba(22,139,209,.12); color:#096da8; }
+.type-pill--orange { background:rgba(241,90,22,.12); color:#b53d08; }
+.status-pill { background:#edf0f3; color:#58616b; }
+.status-pill--branch { background:#fff0e9; color:#a23b0d; }
+.interface-card h3 { margin:0 0 .65rem; font-size:1rem; line-height:1.35; }
+.interface-card h3 code { overflow-wrap:anywhere; word-break:break-word; }
+.interface-card > p { margin-bottom:1rem; font-size:.96rem; line-height:1.5; }
+.interface-card dl { margin:0 0 1rem; }
+.interface-card dl div { display:grid; grid-template-columns:5.5rem 1fr; gap:.6rem; padding:.4rem 0; border-top:1px solid #edf0f3; }
+.interface-card dt { color:#68727d; font-size:.72rem; font-weight:800; text-transform:uppercase; }
+.interface-card dd { min-width:0; margin:0; font-size:.84rem; overflow-wrap:anywhere; }
+.idd-link { display:inline-flex; font-size:.88rem; font-weight:800; text-decoration:none; }
+.doc-details { margin-top:1rem; border:1px solid #d8dde2; border-radius:14px; background:#fff; }
+.doc-details summary { padding:1rem 1.15rem; cursor:pointer; font-weight:800; }
+.details-body { padding:0 1.15rem 1.15rem; }
+.details-body p { font-size:.95rem; }
+.details-body pre { max-width:100%; overflow-x:auto; padding:1rem; border-radius:12px; background:#11161d; color:#f5f7fa; font-size:.8rem; }
+.ownership-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.ownership-grid > div { min-width:0; padding:1.1rem; border:1px solid #d8dde2; border-radius:14px; background:#fff; }
+.ownership-grid code { overflow-wrap:anywhere; font-weight:800; }
+.ownership-grid p { margin:.55rem 0 0; font-size:.9rem; line-height:1.45; }
+.messaging-source { display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center; margin-top:5rem; padding:2rem; border-radius:20px; background:#151a21; color:#fff; }
+.messaging-source h2 { margin-bottom:.7rem; }
+.messaging-source p { margin:0; color:#aeb7c4; }
+.source-actions { display:grid; gap:.7rem; }
+.source-actions a { padding:.8rem 1rem; border:1px solid rgba(255,255,255,.15); border-radius:10px; color:#fff; font-weight:800; text-decoration:none; }
 
 @media (max-width:780px) {
-  .messaging-doc { padding-top:3.5rem; }
-  .messaging-doc h2 { margin-top:3rem; font-size:1.8rem; }
-  .messaging-doc h3 { margin-top:2rem; font-size:1.35rem; }
-  .messaging-doc p,.messaging-doc li { font-size:1rem; }
+  .messaging-hero { padding-bottom:3rem; }
+  .messaging-hero .hardware-hero__title { display:block; }
+  .messaging-hero h1 { margin-inline:0; font-size:2.45rem; line-height:1; }
+  .messaging-hero .hardware-hero__title > p { margin:1rem 0 0; font-size:1rem; }
+  .messaging-doc { padding:3rem 0 4rem; }
+  .messaging-intro { display:block; margin-bottom:1.5rem; }
+  .messaging-intro h2 { font-size:1.8rem; }
+  .messaging-intro > div:first-child p { font-size:1rem; }
+  .messaging-flow { margin-top:1.4rem; padding:1rem; }
+  .flow-split { gap:.5rem; }
+  .flow-split > div { padding:.65rem .35rem; }
+  .endpoint-grid { display:grid; grid-template-columns:1fr; gap:.7rem; margin-bottom:3.5rem; }
+  .endpoint-card { padding:1rem; }
+  .endpoint-icon { width:2.7rem; height:2.7rem; flex-basis:2.7rem; }
+  .message-section { margin-top:3.5rem; }
+  .message-section__heading { grid-template-columns:1fr 76px; gap:1rem; align-items:start; }
+  .message-section__heading h2 { font-size:1.8rem; }
+  .message-section__heading p { margin-bottom:0; font-size:.98rem; }
+  .message-thumb { width:72px; height:72px; border-radius:14px; }
+  .interface-grid,.ownership-grid { grid-template-columns:1fr; }
+  .interface-card { padding:1.05rem; border-radius:15px; }
+  .interface-card__top { margin-bottom:.8rem; }
+  .interface-card h3 { font-size:.96rem; }
+  .interface-card > p { font-size:.92rem; }
+  .interface-card dl div { grid-template-columns:4.8rem 1fr; }
+  .doc-details summary { padding:.9rem 1rem; font-size:.92rem; }
+  .details-body { padding:0 1rem 1rem; }
+  .details-body pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.72rem; }
+  .ownership-grid { gap:.7rem; }
+  .ownership-grid > div { padding:1rem; }
+  .messaging-source { display:block; margin-top:3.5rem; padding:1.3rem; }
+  .messaging-source h2 { font-size:1.7rem; }
+  .messaging-source p { font-size:.95rem; }
+  .source-actions { margin-top:1.2rem; }
+}
 
-  .messaging-table-wrap { margin:1.25rem 0 2.5rem; border:0; border-radius:0; background:transparent; overflow:visible; }
-  .messaging-table-wrap table,.messaging-table-wrap tbody,.messaging-table-wrap tr,.messaging-table-wrap td { display:block; width:100%; }
-  .messaging-table-wrap thead { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-  .messaging-table-wrap tr { margin:0 0 1rem; padding:.35rem 1rem .75rem; border:1px solid #d5dbe1; border-radius:14px; background:#fff; box-shadow:0 4px 16px rgba(20,24,30,.05); }
-  .messaging-table-wrap td { display:grid; grid-template-columns:6.2rem minmax(0,1fr); gap:.75rem; padding:.65rem 0; border:0; border-bottom:1px solid #edf0f3; overflow-wrap:anywhere; }
-  .messaging-table-wrap td:last-child { border-bottom:0; }
-  .messaging-table-wrap td::before { content:attr(data-label); color:#68727d; font-size:.69rem; font-weight:800; letter-spacing:.06em; line-height:1.4; text-transform:uppercase; }
-  .messaging-table-wrap td code { overflow-wrap:anywhere; word-break:break-word; }
-
-  .messaging-doc .architecture-diagram { margin:1.5rem 0 2.5rem; overflow:visible; border-radius:14px; }
-  .messaging-doc .architecture-diagram pre { min-width:0; padding:1rem; white-space:pre-wrap; overflow-wrap:anywhere; font-size:.68rem; line-height:1.35; }
-  .messaging-doc .highlight pre { white-space:pre-wrap; overflow-wrap:anywhere; }
-  .messaging-doc .callout { padding:1rem; }
+@media (max-width:390px) {
+  .messaging-hero h1 { font-size:2.15rem; }
+  .message-section__heading { grid-template-columns:1fr 60px; }
+  .message-thumb { width:58px; height:58px; }
+  .interface-card dl div { display:block; }
+  .interface-card dt { margin-bottom:.15rem; }
 }
