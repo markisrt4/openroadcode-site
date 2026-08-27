@@ -1,156 +1,37 @@
-.messaging-doc .prose {
-  max-width: 1080px;
-}
+.messaging-doc .prose { max-width: 1080px; }
+.messaging-doc h2 { margin-top: 4rem; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.messaging-doc h2:first-child { margin-top: 0; }
+.messaging-doc h3 { margin-top: 2.5rem; }
+.messaging-doc a { color: #0b6fae; overflow-wrap: anywhere; }
+.messaging-doc pre { margin: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.messaging-doc .architecture-diagram { max-width:100%; margin:2rem 0 3rem; overflow-x:auto; border-radius:14px; background:#0b0e12; color:#f5f7fa; -webkit-overflow-scrolling:touch; }
+.messaging-doc .architecture-diagram pre { min-width:700px; padding:1.5rem; font-size:.86rem; line-height:1.45; }
+.messaging-table-wrap { width:100%; margin:1.5rem 0 3rem; border:1px solid #d5dbe1; border-radius:12px; background:white; overflow:hidden; }
+.messaging-table-wrap table { width:100%; border-collapse:collapse; font-size:.9rem; line-height:1.45; }
+.messaging-table-wrap th,.messaging-table-wrap td { padding:.9rem 1rem; border-bottom:1px solid #e1e5e9; text-align:left; vertical-align:top; }
+.messaging-table-wrap th { background:#edf0f3; font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; }
+.messaging-table-wrap tr:last-child td { border-bottom:0; }
+.messaging-doc .highlight,.messaging-doc > .container > pre { max-width:100%; overflow-x:auto; margin:1.25rem 0 2rem; border-radius:12px; }
+.messaging-doc .highlight pre,.messaging-doc > .container > pre { padding:1rem; background:#0b0e12; color:#f5f7fa; }
+.messaging-doc .callout { margin-top:3rem; padding:1.25rem 1.4rem; border-left:4px solid var(--orange); border-radius:0 10px 10px 0; background:rgba(241,90,22,.08); }
 
-.messaging-doc h2 {
-  margin-top: 4rem;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-}
+@media (max-width:780px) {
+  .messaging-doc { padding-top:3.5rem; }
+  .messaging-doc h2 { margin-top:3rem; font-size:1.8rem; }
+  .messaging-doc h3 { margin-top:2rem; font-size:1.35rem; }
+  .messaging-doc p,.messaging-doc li { font-size:1rem; }
 
-.messaging-doc h2:first-child {
-  margin-top: 0;
-}
+  .messaging-table-wrap { margin:1.25rem 0 2.5rem; border:0; border-radius:0; background:transparent; overflow:visible; }
+  .messaging-table-wrap table,.messaging-table-wrap tbody,.messaging-table-wrap tr,.messaging-table-wrap td { display:block; width:100%; }
+  .messaging-table-wrap thead { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .messaging-table-wrap tr { margin:0 0 1rem; padding:.35rem 1rem .75rem; border:1px solid #d5dbe1; border-radius:14px; background:#fff; box-shadow:0 4px 16px rgba(20,24,30,.05); }
+  .messaging-table-wrap td { display:grid; grid-template-columns:6.2rem minmax(0,1fr); gap:.75rem; padding:.65rem 0; border:0; border-bottom:1px solid #edf0f3; overflow-wrap:anywhere; }
+  .messaging-table-wrap td:last-child { border-bottom:0; }
+  .messaging-table-wrap td::before { content:attr(data-label); color:#68727d; font-size:.69rem; font-weight:800; letter-spacing:.06em; line-height:1.4; text-transform:uppercase; }
+  .messaging-table-wrap td code { overflow-wrap:anywhere; word-break:break-word; }
 
-.messaging-doc h3 {
-  margin-top: 2.5rem;
-}
-
-.messaging-doc a {
-  color: #0b6fae;
-  overflow-wrap: anywhere;
-}
-
-.messaging-doc pre {
-  margin: 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.messaging-doc .architecture-diagram {
-  max-width: 100%;
-  margin: 2rem 0 3rem;
-  overflow-x: auto;
-  border-radius: 14px;
-  background: #0b0e12;
-  color: #f5f7fa;
-  -webkit-overflow-scrolling: touch;
-}
-
-.messaging-doc .architecture-diagram pre {
-  min-width: 700px;
-  padding: 1.5rem;
-  font-size: .86rem;
-  line-height: 1.45;
-}
-
-.messaging-table-wrap {
-  width: 100%;
-  margin: 1.5rem 0 3rem;
-  overflow-x: auto;
-  border: 1px solid #d5dbe1;
-  border-radius: 12px;
-  background: white;
-  -webkit-overflow-scrolling: touch;
-}
-
-.messaging-table-wrap table {
-  width: 100%;
-  min-width: 850px;
-  border-collapse: collapse;
-  font-size: .9rem;
-  line-height: 1.45;
-}
-
-.messaging-table-wrap th,
-.messaging-table-wrap td {
-  padding: .9rem 1rem;
-  border-bottom: 1px solid #e1e5e9;
-  text-align: left;
-  vertical-align: top;
-}
-
-.messaging-table-wrap th {
-  background: #edf0f3;
-  font-size: .78rem;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
-.messaging-table-wrap tr:last-child td {
-  border-bottom: 0;
-}
-
-.messaging-doc .highlight,
-.messaging-doc > .container > pre {
-  max-width: 100%;
-  overflow-x: auto;
-  margin: 1.25rem 0 2rem;
-  border-radius: 12px;
-}
-
-.messaging-doc .highlight pre,
-.messaging-doc > .container > pre {
-  padding: 1rem;
-  background: #0b0e12;
-  color: #f5f7fa;
-}
-
-.messaging-doc .callout {
-  margin-top: 3rem;
-  padding: 1.25rem 1.4rem;
-  border-left: 4px solid var(--orange);
-  border-radius: 0 10px 10px 0;
-  background: rgba(241, 90, 22, .08);
-}
-
-@media (max-width: 780px) {
-  .messaging-doc {
-    padding-top: 3.5rem;
-  }
-
-  .messaging-doc h2 {
-    margin-top: 3rem;
-    font-size: 1.8rem;
-  }
-
-  .messaging-doc h3 {
-    margin-top: 2rem;
-    font-size: 1.35rem;
-  }
-
-  .messaging-doc p,
-  .messaging-doc li {
-    font-size: 1rem;
-  }
-
-  .messaging-table-wrap {
-    margin-right: -1rem;
-    margin-left: -1rem;
-    width: calc(100% + 2rem);
-    border-right: 0;
-    border-left: 0;
-    border-radius: 0;
-  }
-
-  .messaging-table-wrap table {
-    min-width: 760px;
-    font-size: .84rem;
-  }
-
-  .messaging-table-wrap th,
-  .messaging-table-wrap td {
-    padding: .75rem;
-  }
-
-  .messaging-doc .architecture-diagram {
-    margin-right: -1rem;
-    margin-left: -1rem;
-    border-radius: 0;
-  }
-
-  .messaging-doc .architecture-diagram pre {
-    min-width: 650px;
-    padding: 1rem;
-    font-size: .76rem;
-  }
+  .messaging-doc .architecture-diagram { margin:1.5rem 0 2.5rem; overflow:visible; border-radius:14px; }
+  .messaging-doc .architecture-diagram pre { min-width:0; padding:1rem; white-space:pre-wrap; overflow-wrap:anywhere; font-size:.68rem; line-height:1.35; }
+  .messaging-doc .highlight pre { white-space:pre-wrap; overflow-wrap:anywhere; }
+  .messaging-doc .callout { padding:1rem; }
 }
