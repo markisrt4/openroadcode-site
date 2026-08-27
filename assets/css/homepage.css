@@ -2,11 +2,11 @@
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 21%, rgba(11, 14, 18, 0.98) 0, rgba(11, 14, 18, 0.92) 15rem, rgba(11, 14, 18, 0.15) 28rem, transparent 37rem),
-    radial-gradient(circle at 50% 29%, rgba(22, 139, 209, 0.16), transparent 33rem),
-    radial-gradient(circle at 29% 57%, rgba(132, 206, 31, 0.09), transparent 27rem),
-    radial-gradient(circle at 71% 60%, rgba(241, 90, 22, 0.09), transparent 27rem),
-    var(--bg);
+    radial-gradient(ellipse at 50% 13%, #0b0e12 0 12rem, rgba(11, 14, 18, 0.94) 19rem, rgba(11, 14, 18, 0.42) 27rem, transparent 34rem),
+    radial-gradient(ellipse at 50% 58%, rgba(22, 139, 209, 0.20) 0, rgba(22, 139, 209, 0.09) 24rem, transparent 43rem),
+    radial-gradient(ellipse at 23% 68%, rgba(132, 206, 31, 0.12) 0, transparent 31rem),
+    radial-gradient(ellipse at 77% 70%, rgba(241, 90, 22, 0.12) 0, transparent 31rem),
+    linear-gradient(180deg, var(--bg) 0%, #101822 72%, var(--bg) 100%);
 }
 
 .hero__logo-field {
@@ -18,9 +18,9 @@
 .hero__logo-field::before {
   position: absolute;
   z-index: -1;
-  inset: -3rem -4rem;
+  inset: -2.2rem -3rem -1rem;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, #0b0e12 0 48%, rgba(11, 14, 18, 0.88) 61%, transparent 76%);
+  background: radial-gradient(ellipse at center, #0b0e12 0 50%, rgba(11, 14, 18, 0.78) 68%, transparent 82%);
   content: "";
 }
 
@@ -86,11 +86,11 @@
     min-height: auto;
     padding: 4.25rem 0 4rem;
     background:
-      radial-gradient(circle at 50% 16%, rgba(11, 14, 18, 0.98) 0, rgba(11, 14, 18, 0.9) 10rem, transparent 22rem),
-      radial-gradient(circle at 50% 25%, rgba(22, 139, 209, 0.14), transparent 24rem),
-      radial-gradient(circle at 20% 55%, rgba(132, 206, 31, 0.08), transparent 18rem),
-      radial-gradient(circle at 80% 58%, rgba(241, 90, 22, 0.08), transparent 18rem),
-      var(--bg);
+      radial-gradient(ellipse at 50% 10%, #0b0e12 0 8rem, rgba(11, 14, 18, 0.92) 13rem, rgba(11, 14, 18, 0.28) 19rem, transparent 25rem),
+      radial-gradient(ellipse at 50% 60%, rgba(22, 139, 209, 0.19) 0, rgba(22, 139, 209, 0.08) 15rem, transparent 28rem),
+      radial-gradient(ellipse at 14% 70%, rgba(132, 206, 31, 0.11) 0, transparent 20rem),
+      radial-gradient(ellipse at 86% 72%, rgba(241, 90, 22, 0.11) 0, transparent 20rem),
+      linear-gradient(180deg, var(--bg) 0%, #101822 75%, var(--bg) 100%);
   }
 
   .hero__logo-field {
@@ -99,7 +99,7 @@
   }
 
   .hero__logo-field::before {
-    inset: -2rem -1.5rem;
+    inset: -1.6rem -1rem -0.5rem;
   }
 
   .home-status__grid {
