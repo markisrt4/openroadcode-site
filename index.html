@@ -3,21 +3,33 @@ layout: default
 title: Open Road Code
 description: Open-source vehicle computing for Linux, Raspberry Pi, navigation, telemetry, radio, media, and custom hardware.
 ---
+<link rel="stylesheet" href="{{ '/assets/css/homepage.css' | relative_url }}">
 
 <section class="hero" id="home">
   <div class="container hero__content">
-    <img class="hero__logo" src="{{ '/assets/images/open-road-code-logo.png' | relative_url }}" alt="Open Road Code logo">
+    <div class="hero__logo-field">
+      <img class="hero__logo" src="{{ '/assets/images/open-road-code-logo.png' | relative_url }}" alt="Open Road Code logo">
+    </div>
     <p class="eyebrow">Open source software for the road</p>
     <h1>Build the vehicle computing system you actually want.</h1>
     <p class="hero__intro">
-      Open Road Code is an open-source vehicle computing platform for embedded Linux,
-      Raspberry Pi, navigation, vehicle telemetry, software-defined radio, media,
-      physical controls, and custom hardware integration.
+      Open Road Code is a modular vehicle computing platform for embedded Linux and Raspberry Pi,
+      with shared navigation, telemetry, radio, media, lighting, sensor, and hardware services
+      that can power multiple user interfaces without tying applications directly to devices.
     </p>
     <div class="button-row">
       <a class="button button--primary" href="#about">Explore the platform</a>
       <a class="button button--secondary" href="https://github.com/markisrt4/OpenRoadCode">View on GitHub</a>
     </div>
+  </div>
+</section>
+
+<section class="home-status" aria-label="Open Road Code active capabilities">
+  <div class="container home-status__grid">
+    <a href="#architecture"><strong>Shared services</strong><span>Navigation · vehicle · sensors</span></a>
+    <a href="{{ '/messaging/' | relative_url }}"><strong>Documented messaging</strong><span>ZeroMQ PUB/SUB + REQ/REP</span></a>
+    <a href="{{ '/component-tests/' | relative_url }}"><strong>Component-testable</strong><span>CLI tests across the stack</span></a>
+    <a href="#features"><strong>Multiple interfaces</strong><span>carUi · carTui · webUi</span></a>
   </div>
 </section>
 
@@ -60,13 +72,13 @@ description: Open-source vehicle computing for Linux, Raspberry Pi, navigation, 
     <h2>One platform, multiple vehicle interfaces</h2>
     <p>
       Open Road Code provides a modular foundation for custom vehicle computing.
-      Hardware access, protocols, controllers, producer services, messaging, and
-      applications are separated so each part can evolve independently.
+      Hardware access, protocols, controllers, producer services, messaging contracts,
+      and applications are separated so each part can evolve independently.
     </p>
     <p>
-      The same platform can drive a touchscreen cockpit, terminal interface, web
+      The same services can drive a touchscreen cockpit, terminal interface, web
       frontend, development workstation, or future embedded application without
-      forcing every interface to own the underlying hardware.
+      forcing every interface to own GPS, IMU, OBD-II, radio, or other hardware.
     </p>
   </div>
 </section>
@@ -101,22 +113,26 @@ description: Open-source vehicle computing for Linux, Raspberry Pi, navigation, 
     <div class="split">
       <div>
         <p class="section-label">Architecture</p>
-        <h2>Hardware produces data. Applications consume it.</h2>
+        <h2>Services produce state. Applications decide how to present it.</h2>
         <p>
-          Domain services own physical devices or simulation sources and publish
-          canonical telemetry. Applications consume that shared state instead of
-          opening competing GPS, IMU, or OBD-II connections just to draw a screen.
+          Domain services own physical devices, browser sources, or simulation and publish
+          canonical state. Applications consume those contracts instead of opening competing
+          GPS, IMU, OBD-II, or sensor connections just to draw a screen.
         </p>
         <p>
-          Continuous telemetry uses ZeroMQ publish/subscribe messaging. Commands
-          that need acknowledgement can use request/reply interfaces. Runtime
-          composition selects real, simulated, stub, or unconfigured implementations.
+          Continuous state uses ZeroMQ publish/subscribe messaging. Operations that require
+          acknowledgement use request/reply interfaces. Interface Design Descriptions define
+          the public wire contracts so producers and consumers can evolve independently.
         </p>
+        <div class="button-row button-row--start architecture__actions">
+          <a class="button button--dark" href="{{ '/messaging/' | relative_url }}">Browse ZeroMQ interfaces</a>
+          <a class="button button--dark" href="{{ '/component-tests/' | relative_url }}">Browse component tests</a>
+        </div>
       </div>
       <div class="architecture" aria-label="Open Road Code runtime architecture">
         <div>carUi · carTui · webUi</div><span>↓</span>
-        <div>Shared telemetry + controllers</div><span>↓</span>
-        <div>ZeroMQ messaging</div><span>↓</span>
+        <div>Public contracts + controllers</div><span>↓</span>
+        <div>ZeroMQ PUB/SUB + REQ/REP</div><span>↓</span>
         <div>Navigation + automotive services</div><span>↓</span>
         <div>Hardware · browser · simulation</div>
       </div>
@@ -130,10 +146,11 @@ description: Open-source vehicle computing for Linux, Raspberry Pi, navigation, 
     <h2>A vehicle lab that keeps growing</h2>
     <div class="feature-grid">
       <div>Touchscreen car UI</div><div>Terminal car UI</div><div>Web frontend</div>
-      <div>GPSD + browser positioning</div><div>Navigation services</div><div>ZeroMQ telemetry bus</div>
+      <div>GPSD + browser positioning</div><div>Valhalla route planning</div><div>MapLibre navigation</div>
+      <div>ZeroMQ PUB/SUB + REQ/REP</div><div>Documented IDD contracts</div><div>CLI component tests</div>
       <div>OBD-II vehicle telemetry</div><div>Software-defined radio</div><div>ADS-B aircraft tracking</div>
-      <div>Spotify + music video integration</div><div>PipeWire audio control</div><div>BLE cabin lighting</div>
-      <div>Rotary encoders + GPIO controls</div><div>Environmental + IMU sensors</div><div>Hardware simulation and stubs</div>
+      <div>Spotify + music video integration</div><div>PipeWire audio + analysis</div><div>BLE cabin lighting</div>
+      <div>Rotary encoders + GPIO controls</div><div>Environmental + IMU sensors</div><div>Android + browser sensor sources</div>
     </div>
   </div>
 </section>
