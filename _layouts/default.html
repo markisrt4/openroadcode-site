@@ -4,73 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0b0e12">
-
-    <title>
-      {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
-    </title>
-
-    <meta
-      name="description"
-      content="{{ page.description | default: site.description }}"
-    >
-
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <style>
+      @media (max-width: 760px) {
+        .site-header__inner { position: relative; flex-wrap: wrap; padding-block: 1rem; gap: .85rem; }
+        .brand { width: 100%; }
+        .primary-nav { width: 100%; overflow-x: auto; gap: 1.15rem; padding-bottom: .2rem; scrollbar-width: none; }
+        .primary-nav::-webkit-scrollbar { display: none; }
+        .primary-nav > a, .nav-dropdown > summary { white-space: nowrap; }
+        .nav-dropdown { position: static; }
+        .nav-dropdown__menu { position: fixed; top: auto; right: 1rem; left: 1rem; width: auto; max-height: calc(100vh - 11rem); overflow-y: auto; transform: none; margin-top: 1rem; }
+      }
+    </style>
   </head>
-
   <body>
-    <header class="site-header">
-      <div class="container site-header__inner">
-        <a class="brand" href="{{ '/' | relative_url }}">Open Road Code</a>
-
-        <nav class="primary-nav" aria-label="Primary navigation">
-          <a href="{{ '/#about' | relative_url }}">About</a>
-
-          <details class="nav-dropdown">
-            <summary>Documentation</summary>
-            <div class="nav-dropdown__menu">
-              <a href="{{ '/docs/' | relative_url }}">
-                <span>Project Guides</span>
-                <small>Setup, architecture, and how-to guides</small>
-              </a>
-              <a href="{{ '/api/' | relative_url }}">
-                <span>API Reference</span>
-                <small>Python modules, classes, and functions</small>
-              </a>
-              <a href="{{ '/component-tests/' | relative_url }}">
-                <span>Component Tests</span>
-                <small>CLI test matrix and hardware requirements</small>
-              </a>
-              <a href="{{ '/docs/contributing/' | relative_url }}">
-                <span>Contributing</span>
-                <small>Setup, testing, and pull-request guidance</small>
-              </a>
-              <a href="{{ '/os/' | relative_url }}">
-                <span>OpenRoadCode OS</span>
-                <small>Architecture, build targets, and build guide</small>
-              </a>
-            </div>
-          </details>
-
-          <a href="{{ '/#pillars' | relative_url }}">Triad</a>
-          <a href="{{ '/os/' | relative_url }}">OS</a>
-          <a href="{{ '/hardware/' | relative_url }}">Hardware</a>
-          <a href="{{ '/#architecture' | relative_url }}">Architecture</a>
-          <a href="{{ '/#features' | relative_url }}">Features</a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      {{ content }}
-    </main>
-
-    <footer class="site-footer">
-      <div class="container site-footer__inner">
-        <p>
-          Open Road Code is an independent open-source project created by Mark Russell.
-        </p>
-        <p>Open source software for the road.</p>
-      </div>
-    </footer>
+    <header class="site-header"><div class="container site-header__inner">
+      <a class="brand" href="{{ '/' | relative_url }}">Open Road Code</a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="{{ '/#about' | relative_url }}">About</a>
+        <details class="nav-dropdown"><summary>Documentation</summary><div class="nav-dropdown__menu">
+          <a href="{{ '/docs/' | relative_url }}"><span>Project Guides</span><small>Setup, architecture, and how-to guides</small></a>
+          <a href="{{ '/api/' | relative_url }}"><span>API Reference</span><small>Python modules, classes, and functions</small></a>
+          <a href="{{ '/component-tests/' | relative_url }}"><span>Component Tests</span><small>CLI test matrix and hardware requirements</small></a>
+          <a href="{{ '/docs/contributing/' | relative_url }}"><span>Contributing</span><small>Setup, testing, and pull-request guidance</small></a>
+          <a href="{{ '/os/' | relative_url }}"><span>OpenRoadCode OS</span><small>Architecture, build targets, and build guide</small></a>
+        </div></details>
+        <a href="{{ '/#pillars' | relative_url }}">Triad</a><a href="{{ '/os/' | relative_url }}">OS</a><a href="{{ '/hardware/' | relative_url }}">Hardware</a><a href="{{ '/#architecture' | relative_url }}">Architecture</a><a href="{{ '/#features' | relative_url }}">Features</a>
+      </nav>
+    </div></header>
+    <main>{{ content }}</main>
+    <footer class="site-footer"><div class="container site-footer__inner"><p>Open Road Code is an independent open-source project created by Mark Russell.</p><p>Open source software for the road.</p></div></footer>
   </body>
 </html>
