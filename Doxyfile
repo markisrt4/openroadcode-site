@@ -32,6 +32,7 @@ INPUT                  = $(DOXYGEN_INPUT_DIRECTORY)/README.md \
 FILE_PATTERNS          = *.py *.hpp *.cpp *.md
 RECURSIVE              = YES
 
+EXCLUDE                = $(DOXYGEN_INPUT_DIRECTORY)/docs/README.md
 EXCLUDE_PATTERNS       = */test/* */unit_test/* */component_test/* \
                          */integration_test/* */apps/qtUi/* */__pycache__/* \
                          */build/* */build-*/*
@@ -68,7 +69,7 @@ HTML_FOOTER             = doxygen/footer.html
 HTML_EXTRA_STYLESHEET   = doxygen/openroadcode-doxygen.css
 GENERATE_TREEVIEW       = YES
 DISABLE_INDEX           = NO
-SEARCHENGINE             = YES
+SEARCHENGINE            = YES
 SERVER_BASED_SEARCH     = NO
 
 GENERATE_LATEX          = NO
