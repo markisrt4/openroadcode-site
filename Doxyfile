@@ -12,6 +12,8 @@ OUTPUT_DIRECTORY       = $(DOXYGEN_OUTPUT_DIRECTORY)
 HTML_OUTPUT            = html
 
 INPUT                  = $(DOXYGEN_INPUT_DIRECTORY)/README.md \
+                         $(DOXYGEN_INPUT_DIRECTORY)/CONTRIBUTING.md \
+                         $(DOXYGEN_INPUT_DIRECTORY)/SECURITY.md \
                          $(DOXYGEN_INPUT_DIRECTORY)/docs \
                          $(DOXYGEN_INPUT_DIRECTORY)/apps \
                          $(DOXYGEN_INPUT_DIRECTORY)/controllers \
