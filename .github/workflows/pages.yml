@@ -41,6 +41,9 @@ jobs:
           ref: ${{ inputs.source_ref || 'master' }}
           path: source
 
+      - name: Test documentation importer
+        run: python3 -m unittest discover -s website/scripts -p 'test_import_readmes.py'
+
       - name: Generate shared documentation inventory
         run: |
           python3 source/scripts/docs_inventory.py \
