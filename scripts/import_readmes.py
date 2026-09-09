@@ -24,6 +24,19 @@ IGNORED_DIRECTORIES = {
 SOURCE_REPOSITORY_URL = "https://github.com/markisrt4/OpenRoadCode"
 SOURCE_BRANCH = "master"
 
+CURATED_GUIDES = {
+    Path("apps/orcUi/ARCHITECTURE.md"): (
+        ("apps", "orcUi", "architecture"),
+        "apps/orcui/architecture",
+        "/docs/apps/orcui/architecture/",
+    ),
+    Path("apps/orcUi/MEDIA.md"): (
+        ("apps", "orcUi", "media"),
+        "apps/orcui/media",
+        "/docs/apps/orcui/media/",
+    ),
+}
+
 
 def slugify(value: str) -> str:
     value = value.lower().replace("_", "-")
@@ -40,31 +53,19 @@ def extract_title(markdown: str, fallback: str) -> str:
     for line in markdown.splitlines():
         if line.startswith("# "):
             return line[2:].strip()
-
     return display_name(fallback)
 
 
 def remove_first_heading(markdown: str) -> str:
-    """
-    Remove the first top-level Markdown heading when it is the first
-    meaningful line in the document.
-
-    The generated Jekyll layout already displays page.title.
-    """
     lines = markdown.splitlines()
-
     for index, line in enumerate(lines):
         if not line.strip():
             continue
-
         if re.match(r"^#\s+", line):
             del lines[index]
-
             if index < len(lines) and not lines[index].strip():
                 del lines[index]
-
         break
-
     return "\n".join(lines).lstrip()
 
 
@@ -78,10 +79,8 @@ def readme_site_location(
     source_root: Path,
 ) -> tuple[tuple[str, ...], str, str]:
     relative_directory = readme_path.parent.relative_to(source_root)
-
     if relative_directory.parts == ("docs",):
         return ("docs",), "docs", "/docs/"
-
     path_parts = relative_directory.parts or ("project",)
     slug = slugify("/".join(path_parts))
     return path_parts, slug, f"/docs/{slug}/"
@@ -98,6 +97,17 @@ def guide_site_location(
     return path_parts, slug, f"/docs/{slug}/"
 
 
+def curated_guide_site_location(
+    guide_path: Path,
+    source_root: Path,
+) -> tuple[tuple[str, ...], str, str] | None:
+    try:
+        relative = guide_path.relative_to(source_root)
+    except ValueError:
+        return None
+    return CURATED_GUIDES.get(relative)
+
+
 def source_path_to_site_url(
     target_path: Path,
     source_root: Path,
@@ -109,6 +119,10 @@ def source_path_to_site_url(
 
     if relative == Path("CONTRIBUTING.md"):
         return "/docs/contributing/"
+
+    curated = CURATED_GUIDES.get(relative)
+    if curated is not None and target_path.is_file():
+        return curated[2]
 
     if target_path.name == "README.md" and target_path.is_file():
         _, _, url = readme_site_location(target_path, source_root)
@@ -124,7 +138,6 @@ def source_path_to_site_url(
             target_path.relative_to(docs_root)
         except ValueError:
             return None
-
         _, _, url = guide_site_location(target_path, source_root)
         return url
 
@@ -136,7 +149,6 @@ def source_fallback_url(target_path: Path, source_root: Path) -> str | None:
         relative = target_path.relative_to(source_root)
     except ValueError:
         return None
-
     encoded_path = quote(relative.as_posix(), safe="/")
     kind = "tree" if target_path.is_dir() else "blob"
     return f"{SOURCE_REPOSITORY_URL}/{kind}/{SOURCE_BRANCH}/{encoded_path}"
@@ -147,14 +159,11 @@ def rewrite_markdown_links(
     source_path: Path,
     source_root: Path,
 ) -> str:
-    """Rewrite repository-relative Markdown links for the generated website."""
-
     link_pattern = re.compile(r"(?<!!)\[([^\]]+)\]\(([^)]+)\)")
 
     def replace_link(match: re.Match[str]) -> str:
         label, destination = match.groups()
         destination = destination.strip()
-
         if (
             not destination
             or destination.startswith(("http://", "https://", "mailto:", "#", "/"))
@@ -163,7 +172,6 @@ def rewrite_markdown_links(
 
         target, separator, fragment = destination.partition("#")
         target_path = (source_path.parent / target).resolve()
-
         site_url = source_path_to_site_url(target_path, source_root)
         if site_url is not None:
             rewritten = site_url
@@ -175,7 +183,6 @@ def rewrite_markdown_links(
 
         if separator and fragment:
             rewritten += f"#{fragment}"
-
         return f"[{label}]({rewritten})"
 
     return link_pattern.sub(replace_link, markdown)
@@ -188,42 +195,24 @@ def add_to_tree(
     url: str,
 ) -> None:
     node = tree
-
     for part in path_parts:
         node = node.setdefault(part, {})
-
-    node["__page__"] = {
-        "title": title,
-        "url": url,
-    }
+    node["__page__"] = {"title": title, "url": url}
 
 
 def serialize_tree(tree: dict[str, Any]) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
-
-    for key in sorted(
-        (name for name in tree if name != "__page__"),
-        key=str.lower,
-    ):
+    for key in sorted((name for name in tree if name != "__page__"), key=str.lower):
         branch = tree[key]
-
-        item: dict[str, Any] = {
-            "name": display_name(key),
-        }
-
+        item: dict[str, Any] = {"name": display_name(key)}
         page = branch.get("__page__")
-
         if page:
             item["title"] = page["title"]
             item["url"] = page["url"]
-
         children = serialize_tree(branch)
-
         if children:
             item["children"] = children
-
         result.append(item)
-
     return result
 
 
@@ -254,19 +243,8 @@ def write_page(
         f"source_path: {json.dumps(str(source_path.relative_to(source_root)))}\n"
         "---\n\n"
     )
-
-    output_path.write_text(
-        front_matter + markdown + "\n",
-        encoding="utf-8",
-    )
-
-    add_to_tree(
-        tree=tree,
-        path_parts=path_parts,
-        title=title,
-        url=url,
-    )
-
+    output_path.write_text(front_matter + markdown + "\n", encoding="utf-8")
+    add_to_tree(tree=tree, path_parts=path_parts, title=title, url=url)
     print(f"Imported {source_path} -> {output_path}")
 
 
@@ -278,10 +256,7 @@ def write_jekyll_page(
 ) -> None:
     if is_ignored(readme_path, source_root):
         return
-
     path_parts, slug, url = readme_site_location(readme_path, source_root)
-    fallback_title = readme_path.parent.name or "Project"
-
     write_page(
         source_path=readme_path,
         source_root=source_root,
@@ -290,7 +265,7 @@ def write_jekyll_page(
         path_parts=path_parts,
         slug=slug,
         url=url,
-        fallback_title=fallback_title,
+        fallback_title=readme_path.parent.name or "Project",
     )
 
 
@@ -302,9 +277,29 @@ def write_guide_page(
 ) -> None:
     if is_ignored(guide_path, source_root):
         return
-
     path_parts, slug, url = guide_site_location(guide_path, source_root)
+    write_page(
+        source_path=guide_path,
+        source_root=source_root,
+        output_root=output_root,
+        tree=tree,
+        path_parts=path_parts,
+        slug=slug,
+        url=url,
+        fallback_title=guide_path.stem,
+    )
 
+
+def write_curated_guide_page(
+    guide_path: Path,
+    source_root: Path,
+    output_root: Path,
+    tree: dict[str, Any],
+) -> None:
+    location = curated_guide_site_location(guide_path, source_root)
+    if location is None or not guide_path.is_file():
+        return
+    path_parts, slug, url = location
     write_page(
         source_path=guide_path,
         source_root=source_root,
@@ -339,28 +334,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Import OpenRoadCode repository documentation into Jekyll."
     )
-
-    parser.add_argument(
-        "--source",
-        required=True,
-        type=Path,
-        help="Root of the Open Road Code source repository.",
-    )
-
-    parser.add_argument(
-        "--output",
-        required=True,
-        type=Path,
-        help="Destination Jekyll collection directory.",
-    )
-
-    parser.add_argument(
-        "--tree-output",
-        required=True,
-        type=Path,
-        help="Destination JSON file for the documentation tree.",
-    )
-
+    parser.add_argument("--source", required=True, type=Path)
+    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--tree-output", required=True, type=Path)
     args = parser.parse_args()
 
     source_root = args.source.resolve()
@@ -369,53 +345,40 @@ def main() -> int:
 
     if not source_root.is_dir():
         raise SystemExit(f"Source directory does not exist: {source_root}")
-
     if output_root.exists():
         shutil.rmtree(output_root)
-
     output_root.mkdir(parents=True, exist_ok=True)
     tree_output.parent.mkdir(parents=True, exist_ok=True)
 
     tree: dict[str, Any] = {}
 
     for readme_path in sorted(source_root.rglob("README.md")):
-        write_jekyll_page(
-            readme_path=readme_path,
-            source_root=source_root,
-            output_root=output_root,
-            tree=tree,
-        )
+        write_jekyll_page(readme_path, source_root, output_root, tree)
 
     docs_root = source_root / "docs"
     if docs_root.is_dir():
         for guide_path in sorted(docs_root.rglob("*.md")):
             if guide_path.name == "README.md":
                 continue
-            write_guide_page(
-                guide_path=guide_path,
-                source_root=source_root,
-                output_root=output_root,
-                tree=tree,
-            )
+            write_guide_page(guide_path, source_root, output_root, tree)
+
+    for relative_path in CURATED_GUIDES:
+        write_curated_guide_page(
+            source_root / relative_path,
+            source_root,
+            output_root,
+            tree,
+        )
 
     contributing_path = source_root / "CONTRIBUTING.md"
     if contributing_path.is_file():
-        write_contributing_page(
-            contributing_path=contributing_path,
-            source_root=source_root,
-            output_root=output_root,
-            tree=tree,
-        )
-
-    serialized_tree = serialize_tree(tree)
+        write_contributing_page(contributing_path, source_root, output_root, tree)
 
     tree_output.write_text(
-        json.dumps(serialized_tree, indent=2) + "\n",
+        json.dumps(serialize_tree(tree), indent=2) + "\n",
         encoding="utf-8",
     )
-
     print(f"Generated documentation tree: {tree_output}")
-
     return 0
 
 
