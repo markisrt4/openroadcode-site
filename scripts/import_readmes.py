@@ -211,16 +211,36 @@ def serialize_tree(tree: dict[str, Any]) -> list[dict[str, Any]]:
     return result
 
 
+def register_destination(
+    destinations: dict[str, Path],
+    source_path: Path,
+    slug: str,
+    url: str,
+) -> None:
+    """Reject generated output collisions before one page can overwrite another."""
+    for destination in (f"slug:{slug}", f"url:{url}"):
+        existing = destinations.get(destination)
+        if existing is not None and existing != source_path:
+            raise RuntimeError(
+                "Documentation destination collision: "
+                f"{source_path} and {existing} both map to {destination}"
+            )
+        destinations[destination] = source_path
+
+
 def write_page(
     source_path: Path,
     source_root: Path,
     output_root: Path,
     tree: dict[str, Any],
+    destinations: dict[str, Path],
     path_parts: tuple[str, ...],
     slug: str,
     url: str,
     fallback_title: str,
 ) -> None:
+    register_destination(destinations, source_path, slug, url)
+
     markdown = source_path.read_text(encoding="utf-8")
     title = extract_title(markdown, fallback_title)
     markdown = remove_first_heading(markdown)
@@ -248,6 +268,7 @@ def write_jekyll_page(
     source_root: Path,
     output_root: Path,
     tree: dict[str, Any],
+    destinations: dict[str, Path],
 ) -> None:
     if is_ignored(readme_path, source_root):
         return
@@ -257,6 +278,7 @@ def write_jekyll_page(
         source_root=source_root,
         output_root=output_root,
         tree=tree,
+        destinations=destinations,
         path_parts=path_parts,
         slug=slug,
         url=url,
@@ -269,6 +291,7 @@ def write_guide_page(
     source_root: Path,
     output_root: Path,
     tree: dict[str, Any],
+    destinations: dict[str, Path],
 ) -> None:
     if is_ignored(guide_path, source_root):
         return
@@ -278,6 +301,7 @@ def write_guide_page(
         source_root=source_root,
         output_root=output_root,
         tree=tree,
+        destinations=destinations,
         path_parts=path_parts,
         slug=slug,
         url=url,
@@ -290,6 +314,7 @@ def write_curated_guide_page(
     source_root: Path,
     output_root: Path,
     tree: dict[str, Any],
+    destinations: dict[str, Path],
 ) -> None:
     location = curated_guide_site_location(guide_path, source_root)
     if location is None or not guide_path.is_file():
@@ -300,6 +325,7 @@ def write_curated_guide_page(
         source_root=source_root,
         output_root=output_root,
         tree=tree,
+        destinations=destinations,
         path_parts=path_parts,
         slug=slug,
         url=url,
@@ -312,12 +338,14 @@ def write_contributing_page(
     source_root: Path,
     output_root: Path,
     tree: dict[str, Any],
+    destinations: dict[str, Path],
 ) -> None:
     write_page(
         source_path=contributing_path,
         source_root=source_root,
         output_root=output_root,
         tree=tree,
+        destinations=destinations,
         path_parts=("contributing",),
         slug="contributing",
         url="/docs/contributing/",
@@ -346,16 +374,29 @@ def main() -> int:
     tree_output.parent.mkdir(parents=True, exist_ok=True)
 
     tree: dict[str, Any] = {}
+    destinations: dict[str, Path] = {}
 
     for readme_path in sorted(source_root.rglob("README.md")):
-        write_jekyll_page(readme_path, source_root, output_root, tree)
+        write_jekyll_page(
+            readme_path,
+            source_root,
+            output_root,
+            tree,
+            destinations,
+        )
 
     docs_root = source_root / "docs"
     if docs_root.is_dir():
         for guide_path in sorted(docs_root.rglob("*.md")):
             if guide_path.name == "README.md":
                 continue
-            write_guide_page(guide_path, source_root, output_root, tree)
+            write_guide_page(
+                guide_path,
+                source_root,
+                output_root,
+                tree,
+                destinations,
+            )
 
     for relative_path in CURATED_GUIDES:
         write_curated_guide_page(
@@ -363,11 +404,18 @@ def main() -> int:
             source_root,
             output_root,
             tree,
+            destinations,
         )
 
     contributing_path = source_root / "CONTRIBUTING.md"
     if contributing_path.is_file():
-        write_contributing_page(contributing_path, source_root, output_root, tree)
+        write_contributing_page(
+            contributing_path,
+            source_root,
+            output_root,
+            tree,
+            destinations,
+        )
 
     tree_output.write_text(
         json.dumps(serialize_tree(tree), indent=2) + "\n",
