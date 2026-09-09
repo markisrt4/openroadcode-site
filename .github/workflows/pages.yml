@@ -1,6 +1,7 @@
 name: Build and deploy website
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -15,7 +16,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -52,7 +53,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes doxygen
 
-      - name: Generate Python API reference
+      - name: Generate API reference
         working-directory: website
         env:
           DOXYGEN_INPUT_DIRECTORY: ${{ github.workspace }}/source
@@ -82,6 +83,7 @@ jobs:
           path: website/_site
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
