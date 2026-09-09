@@ -1,44 +1,66 @@
-# Doxygen configuration for the Python API reference generated from OpenRoadCode.
+# Doxygen configuration for the OpenRoadCode public API reference.
 #
-# The workflow supplies absolute paths for these variables. For a local build:
+# The website workflow supplies absolute paths for these variables. For a local build:
 #   DOXYGEN_INPUT_DIRECTORY=/path/to/OpenRoadCode \
 #   DOXYGEN_OUTPUT_DIRECTORY=/tmp/openroadcode-doxygen \
 #   doxygen Doxyfile
 
-PROJECT_NAME           = "Open Road Code"
-PROJECT_BRIEF          = "Python API Reference"
+PROJECT_NAME           = "OpenRoadCode"
+PROJECT_BRIEF          = "Public API reference for OpenRoadCode"
 
 OUTPUT_DIRECTORY       = $(DOXYGEN_OUTPUT_DIRECTORY)
 HTML_OUTPUT            = html
 
-INPUT                  = $(DOXYGEN_INPUT_DIRECTORY)
-FILE_PATTERNS           = *.py
-RECURSIVE               = YES
+INPUT                  = $(DOXYGEN_INPUT_DIRECTORY)/README.md \
+                         $(DOXYGEN_INPUT_DIRECTORY)/docs \
+                         $(DOXYGEN_INPUT_DIRECTORY)/apps \
+                         $(DOXYGEN_INPUT_DIRECTORY)/controllers \
+                         $(DOXYGEN_INPUT_DIRECTORY)/services \
+                         $(DOXYGEN_INPUT_DIRECTORY)/messaging \
+                         $(DOXYGEN_INPUT_DIRECTORY)/hardware_io \
+                         $(DOXYGEN_INPUT_DIRECTORY)/protocols \
+                         $(DOXYGEN_INPUT_DIRECTORY)/config \
+                         $(DOXYGEN_INPUT_DIRECTORY)/common \
+                         $(DOXYGEN_INPUT_DIRECTORY)/ui \
+                         $(DOXYGEN_INPUT_DIRECTORY)/frontends \
+                         $(DOXYGEN_INPUT_DIRECTORY)/input_events \
+                         $(DOXYGEN_INPUT_DIRECTORY)/networking \
+                         $(DOXYGEN_INPUT_DIRECTORY)/security \
+                         $(DOXYGEN_INPUT_DIRECTORY)/development \
+                         $(DOXYGEN_INPUT_DIRECTORY)/scripts \
+                         $(DOXYGEN_INPUT_DIRECTORY)/tools
+FILE_PATTERNS          = *.py *.hpp *.cpp *.md
+RECURSIVE              = YES
 
-EXCLUDE_PATTERNS        = */.git/* \
-                          */.github/* \
-                          */.venv/* \
-                          */venv/* \
-                          */__pycache__/* \
-                          */build/* \
-                          */dist/*
+EXCLUDE_PATTERNS       = */test/* */unit_test/* */component_test/* \
+                         */integration_test/* */apps/qtUi/* */__pycache__/* \
+                         */build/* */build-*/*
 
 EXTENSION_MAPPING       = py=Python
 OPTIMIZE_OUTPUT_JAVA    = YES
-EXTRACT_ALL             = YES
+EXTRACT_ALL             = NO
 EXTRACT_PRIVATE         = NO
-EXTRACT_STATIC          = YES
-HIDE_UNDOC_MEMBERS      = NO
-HIDE_UNDOC_CLASSES      = NO
+EXTRACT_STATIC          = NO
+HIDE_UNDOC_MEMBERS      = YES
+HIDE_UNDOC_CLASSES      = YES
 
 FULL_PATH_NAMES         = YES
 STRIP_FROM_PATH         = $(DOXYGEN_INPUT_DIRECTORY)
 
 JAVADOC_AUTOBRIEF       = YES
 MULTILINE_CPP_IS_BRIEF  = YES
-PYTHON_DOCSTRING        = YES
+PYTHON_DOCSTRING        = NO
 MARKDOWN_SUPPORT        = YES
 AUTOLINK_SUPPORT        = YES
+USE_MDFILE_AS_MAINPAGE  = $(DOXYGEN_INPUT_DIRECTORY)/README.md
+
+HAVE_DOT                = NO
+CALL_GRAPH              = NO
+CALLER_GRAPH            = NO
+DIRECTORY_GRAPH         = NO
+INCLUDE_GRAPH           = NO
+INCLUDED_BY_GRAPH       = NO
+GRAPHICAL_HIERARCHY     = NO
 
 GENERATE_HTML           = YES
 HTML_HEADER             = doxygen/header.html
@@ -54,8 +76,8 @@ GENERATE_XML            = NO
 GENERATE_MAN            = NO
 GENERATE_RTF            = NO
 
-HAVE_DOT                = NO
-QUIET                   = NO
+QUIET                   = YES
 WARNINGS                = YES
-WARN_IF_UNDOCUMENTED    = NO
+WARN_IF_UNDOCUMENTED    = YES
 WARN_IF_DOC_ERROR       = YES
+WARN_AS_ERROR           = YES
