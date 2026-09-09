@@ -30,11 +30,6 @@ CURATED_GUIDES = {
         "apps/orcui/architecture",
         "/docs/apps/orcui/architecture/",
     ),
-    Path("apps/orcUi/MEDIA.md"): (
-        ("apps", "orcUi", "media"),
-        "apps/orcui/media",
-        "/docs/apps/orcui/media/",
-    ),
 }
 
 
