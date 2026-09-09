@@ -125,13 +125,20 @@ def write_jekyll_page(
     title = extract_title(markdown, readme_path.parent.name or "Project")
     markdown = remove_first_heading(markdown)
 
-    path_parts = relative_directory.parts or ("project",)
-    slug = slugify("/".join(path_parts))
-    url = f"/docs/{slug}/"
+    if relative_directory.parts == ("docs",):
+        # docs/README.md is the curated documentation landing page. Publish it
+        # directly at /docs/ instead of creating the redundant /docs/docs/ URL.
+        path_parts = ("docs",)
+        slug = "docs"
+        url = "/docs/"
+        output_directory = output_root / "docs"
+    else:
+        path_parts = relative_directory.parts or ("project",)
+        slug = slugify("/".join(path_parts))
+        url = f"/docs/{slug}/"
+        output_directory = output_root / slug
 
-    output_directory = output_root / slug
     output_directory.mkdir(parents=True, exist_ok=True)
-
     output_path = output_directory / "index.md"
 
     front_matter = (
@@ -156,7 +163,6 @@ def write_jekyll_page(
     )
 
     print(f"Imported {readme_path} -> {output_path}")
-
 
 
 def write_contributing_page(
