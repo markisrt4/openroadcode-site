@@ -1069,3 +1069,67 @@ blockquote {
     max-height: none;
   }
 }
+
+
+/* Shared documentation diagram legend. */
+.orc-diagram-legend {
+  float: right;
+  width: 180px;
+  margin: 0 0 1rem 1.4rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(20, 24, 30, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 24px rgba(20, 24, 30, 0.08);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.orc-diagram-legend strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #4d5661;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.orc-diagram-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  margin: 0.22rem 0;
+  color: #4d5661;
+}
+
+.orc-legend-swatch {
+  width: 0.68rem;
+  height: 0.68rem;
+  flex: 0 0 0.68rem;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+.orc-legend-app { background: #dbeafe; border-color: #2563eb; }
+.orc-legend-service { background: #ede9fe; border-color: #7c3aed; }
+.orc-legend-controller { background: #dcfce7; border-color: #16a34a; }
+.orc-legend-message { background: #ffedd5; border-color: #ea580c; }
+.orc-legend-adapter { background: #fee2e2; border-color: #dc2626; }
+.orc-legend-external { background: #f3f4f6; border-color: #6b7280; }
+
+.documentation__body .mermaid {
+  margin: 1.35rem 0 2rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #f7f9fb;
+  overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+  .orc-diagram-legend {
+    float: none;
+    width: auto;
+    max-width: 240px;
+    margin: 0.75rem 0 1.25rem auto;
+  }
+}
