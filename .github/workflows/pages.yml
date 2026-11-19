@@ -9,6 +9,11 @@ on:
     types:
       - openroadcode-updated
   workflow_dispatch:
+    inputs:
+      source_ref:
+        description: OpenRoadCode ref to build (defaults to master)
+        required: false
+        default: master
 
 permissions:
   contents: read
@@ -33,14 +38,26 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: markisrt4/OpenRoadCode
+          ref: ${{ inputs.source_ref || 'master' }}
           path: source
+
+      - name: Test documentation importer
+        run: python3 -m unittest discover -s website/scripts -p 'test_import_readmes.py'
+
+      - name: Generate shared documentation inventory
+        run: |
+          python3 source/scripts/docs_inventory.py \
+            --source source \
+            --check \
+            --manifest "${{ runner.temp }}/openroadcode-docs.json"
 
       - name: Import README files
         run: |
           python3 website/scripts/import_readmes.py \
             --source source \
             --output website/_docs \
-            --tree-output website/_data/docs_tree.json
+            --tree-output website/_data/docs_tree.json \
+            --manifest "${{ runner.temp }}/openroadcode-docs.json"
 
           echo "Generated documentation:"
           find website/_docs -type f -print
