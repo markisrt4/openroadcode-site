@@ -9,6 +9,11 @@ on:
     types:
       - openroadcode-updated
   workflow_dispatch:
+    inputs:
+      source_ref:
+        description: OpenRoadCode ref to build (defaults to master)
+        required: false
+        default: master
 
 permissions:
   contents: read
@@ -33,6 +38,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: markisrt4/OpenRoadCode
+          ref: ${{ inputs.source_ref || 'master' }}
           path: source
 
       - name: Check out libMusicForge
@@ -49,12 +55,23 @@ jobs:
           path: sdrforge
           persist-credentials: false
 
-      - name: Import README files
+      - name: Test documentation importer
+        run: python3 -m unittest discover -s website/scripts -p 'test_import_readmes.py'
+
+      - name: Generate shared documentation inventory
+        run: |
+          python3 source/scripts/docs_inventory.py \
+            --source source \
+            --check \
+            --manifest "${{ runner.temp }}/openroadcode-docs.json"
+
+      - name: Import documentation
         run: |
           python3 website/scripts/import_readmes.py \
             --source source \
             --output website/_docs \
-            --tree-output website/_data/docs_tree.json
+            --tree-output website/_data/docs_tree.json \
+            --manifest "${{ runner.temp }}/openroadcode-docs.json"
 
           echo "Generated documentation:"
           find website/_docs -type f -print
@@ -119,8 +136,12 @@ jobs:
           source: website
           destination: website/_site
 
-      - name: Check published Forge reference entry points
+      - name: Check documentation entry points
         run: |
+          test -f website/_site/docs/contributing/index.html
+          test -f website/_site/docs/apps/orcui/architecture/index.html
+          grep -q '/api/musicforge/' website/_site/docs/index.html
+          grep -q '/api/sdrforge/' website/_site/docs/index.html
           test -f website/_site/api/musicforge/index.html
           test -f website/_site/api/sdrforge/index.html
 
