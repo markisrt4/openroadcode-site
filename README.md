@@ -31,7 +31,7 @@ doxygen Doxyfile
 
 Open `/tmp/openroadcode-doxygen/html/index.html`.
 
-The Doxygen build uses the custom files in `doxygen/` to share the main site's
+The OpenRoadCode API build uses the custom files in `doxygen/` to share the main site's
 header, footer, colors, and typography.
 
 ### Rebuilding after OpenRoadCode updates
@@ -43,6 +43,16 @@ Pages workflow so imported guides and the API reference stay current.
 The source repository needs an Actions secret named `SITE_DISPATCH_TOKEN`.
 Use a fine-grained personal access token limited to `openroadcode-site` with
 **Contents: Read and write** permission.
+
+### Forge library API references
+
+The Pages workflow checks out libMusicForge and libSDRForge, then runs
+`doxygen/Doxyfile.forge` against each package's Python source. The resulting
+references are available under `/api/musicforge/` and `/api/sdrforge/`.
+The documentation index links to each repository for its maintained guides.
+
+The references refresh on the next site build. Run the Pages workflow
+manually to publish Forge changes before another site build is triggered.
 
 ## GitHub Pages deployment
 

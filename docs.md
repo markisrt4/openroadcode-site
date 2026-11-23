@@ -20,6 +20,23 @@ permalink: /docs/
       </a>
     </p>
 
+    <h2 class="documentation-index__heading">Forge Libraries</h2>
+
+    <ul>
+      <li>
+        libMusicForge provides music metadata, listening statistics, playback
+        identity, and PCM analysis.
+        <a href="{{ '/api/musicforge/' | relative_url }}">Python API</a> ·
+        <a href="https://github.com/markisrt4/libMusicForge#readme">Project guides</a>
+      </li>
+      <li>
+        libSDRForge provides SDR acquisition, demodulation, and radio protocol
+        decoding.
+        <a href="{{ '/api/sdrforge/' | relative_url }}">Python API</a> ·
+        <a href="https://github.com/markisrt4/libSDRForge#readme">Project guides</a>
+      </li>
+    </ul>
+
     <h2 class="documentation-index__heading">Project Guides</h2>
 
     <nav

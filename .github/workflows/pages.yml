@@ -35,6 +35,20 @@ jobs:
           repository: markisrt4/OpenRoadCode
           path: source
 
+      - name: Check out libMusicForge
+        uses: actions/checkout@v4
+        with:
+          repository: markisrt4/libMusicForge
+          path: musicforge
+          persist-credentials: false
+
+      - name: Check out libSDRForge
+        uses: actions/checkout@v4
+        with:
+          repository: markisrt4/libSDRForge
+          path: sdrforge
+          persist-credentials: false
+
       - name: Import README files
         run: |
           python3 website/scripts/import_readmes.py \
@@ -68,6 +82,28 @@ jobs:
           cp -a "${DOXYGEN_OUTPUT_DIRECTORY}/html/." api/
           test -f api/index.html
 
+      - name: Generate Forge API references
+        working-directory: website
+        env:
+          FORGE_SOURCE_ROOT: ${{ github.workspace }}
+          FORGE_BUILD_ROOT: ${{ runner.temp }}
+        run: |
+          build_reference() {
+            local package="$1"
+            local output="${FORGE_BUILD_ROOT}/${package}-doxygen"
+            FORGE_PROJECT_NAME="$2" \
+              FORGE_INPUT_DIRECTORY="${FORGE_SOURCE_ROOT}/${package}/src/${package}" \
+              FORGE_OUTPUT_DIRECTORY="$output" \
+              doxygen doxygen/Doxyfile.forge
+
+            test -f "${output}/html/index.html"
+            mkdir -p "api/${package}"
+            cp -a "${output}/html/." "api/${package}/"
+          }
+
+          build_reference musicforge libMusicForge
+          build_reference sdrforge libSDRForge
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
@@ -76,6 +112,11 @@ jobs:
         with:
           source: website
           destination: website/_site
+
+      - name: Check published Forge reference entry points
+        run: |
+          test -f website/_site/api/musicforge/index.html
+          test -f website/_site/api/sdrforge/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

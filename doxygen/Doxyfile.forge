@@ -1,0 +1,16 @@
+# Shared source reference configuration for the Forge libraries.
+PROJECT_NAME           = "$(FORGE_PROJECT_NAME)"
+OUTPUT_DIRECTORY       = $(FORGE_OUTPUT_DIRECTORY)
+INPUT                  = $(FORGE_INPUT_DIRECTORY)
+STRIP_FROM_PATH        = $(FORGE_INPUT_DIRECTORY)
+FILE_PATTERNS          = *.py
+RECURSIVE              = YES
+OPTIMIZE_OUTPUT_JAVA   = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+GENERATE_TREEVIEW      = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HAVE_DOT               = NO
+QUIET                  = YES
