@@ -145,6 +145,9 @@ def import_documents(source_root: Path, output_root: Path, tree_output: Path, re
 
     tree: dict[str, Any] = {}
     for record, source_path, parts, slug, url in locations:
+        if url == "/docs/":
+            # The website's docs.md owns this route.
+            continue
         markdown = source_path.read_text(encoding="utf-8")
         title = record["title"]
         markdown = remove_first_heading(markdown)

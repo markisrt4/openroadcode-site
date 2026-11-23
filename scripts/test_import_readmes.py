@@ -43,7 +43,7 @@ class ImportReadmesTests(unittest.TestCase):
             output = root / "output"
             tree = root / "tree.json"
             import_documents(source, output, tree, records)
-            self.assertIn("/docs/controllers/radio/", (output / "docs/index.md").read_text())
+            self.assertFalse((output / "docs/index.md").exists())
             self.assertIn("/docs/", (output / "controllers/radio/index.md").read_text())
             self.assertTrue(tree.is_file())
             with self.assertRaises(RuntimeError):

@@ -41,6 +41,20 @@ jobs:
           ref: ${{ inputs.source_ref || 'master' }}
           path: source
 
+      - name: Check out libMusicForge
+        uses: actions/checkout@v4
+        with:
+          repository: markisrt4/libMusicForge
+          path: musicforge
+          persist-credentials: false
+
+      - name: Check out libSDRForge
+        uses: actions/checkout@v4
+        with:
+          repository: markisrt4/libSDRForge
+          path: sdrforge
+          persist-credentials: false
+
       - name: Test documentation importer
         run: python3 -m unittest discover -s website/scripts -p 'test_import_readmes.py'
 
@@ -51,7 +65,7 @@ jobs:
             --check \
             --manifest "${{ runner.temp }}/openroadcode-docs.json"
 
-      - name: Import README files
+      - name: Import documentation
         run: |
           python3 website/scripts/import_readmes.py \
             --source source \
@@ -73,10 +87,16 @@ jobs:
       - name: Generate API reference
         working-directory: website
         env:
+          DOXYGEN_SITE_DIRECTORY: ${{ github.workspace }}/website
           DOXYGEN_INPUT_DIRECTORY: ${{ github.workspace }}/source
           DOXYGEN_OUTPUT_DIRECTORY: ${{ runner.temp }}/openroadcode-doxygen
         run: |
-          doxygen Doxyfile
+          # Keep website filenames out of Doxygen's relative Markdown link lookup.
+          doxygen_workdir="$(mktemp -d)"
+          (
+            cd "$doxygen_workdir"
+            doxygen "${DOXYGEN_SITE_DIRECTORY}/Doxyfile"
+          )
 
           echo "Generated Doxygen HTML:"
           find "${DOXYGEN_OUTPUT_DIRECTORY}/html" -maxdepth 1 -type f -print
@@ -84,6 +104,28 @@ jobs:
           mkdir -p api
           cp -a "${DOXYGEN_OUTPUT_DIRECTORY}/html/." api/
           test -f api/index.html
+
+      - name: Generate Forge API references
+        working-directory: website
+        env:
+          FORGE_SOURCE_ROOT: ${{ github.workspace }}
+          FORGE_BUILD_ROOT: ${{ runner.temp }}
+        run: |
+          build_reference() {
+            local package="$1"
+            local output="${FORGE_BUILD_ROOT}/${package}-doxygen"
+            FORGE_PROJECT_NAME="$2" \
+              FORGE_INPUT_DIRECTORY="${FORGE_SOURCE_ROOT}/${package}/src/${package}" \
+              FORGE_OUTPUT_DIRECTORY="$output" \
+              doxygen doxygen/Doxyfile.forge
+
+            test -f "${output}/html/index.html"
+            mkdir -p "api/${package}"
+            cp -a "${output}/html/." "api/${package}/"
+          }
+
+          build_reference musicforge libMusicForge
+          build_reference sdrforge libSDRForge
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -93,6 +135,15 @@ jobs:
         with:
           source: website
           destination: website/_site
+
+      - name: Check documentation entry points
+        run: |
+          test -f website/_site/docs/contributing/index.html
+          test -f website/_site/docs/apps/orcui/architecture/index.html
+          grep -q '/api/musicforge/' website/_site/docs/index.html
+          grep -q '/api/sdrforge/' website/_site/docs/index.html
+          test -f website/_site/api/musicforge/index.html
+          test -f website/_site/api/sdrforge/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
