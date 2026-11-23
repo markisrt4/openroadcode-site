@@ -1,6 +1,7 @@
 # Doxygen configuration for the OpenRoadCode public API reference.
 #
 # The website workflow supplies absolute paths for these variables. For a local build:
+#   DOXYGEN_SITE_DIRECTORY=/path/to/openroadcode-site \
 #   DOXYGEN_INPUT_DIRECTORY=/path/to/OpenRoadCode \
 #   DOXYGEN_OUTPUT_DIRECTORY=/tmp/openroadcode-doxygen \
 #   doxygen Doxyfile
@@ -66,9 +67,9 @@ INCLUDED_BY_GRAPH       = NO
 GRAPHICAL_HIERARCHY     = NO
 
 GENERATE_HTML           = YES
-HTML_HEADER             = doxygen/header.html
-HTML_FOOTER             = doxygen/footer.html
-HTML_EXTRA_STYLESHEET   = doxygen/openroadcode-doxygen.css
+HTML_HEADER             = $(DOXYGEN_SITE_DIRECTORY)/doxygen/header.html
+HTML_FOOTER             = $(DOXYGEN_SITE_DIRECTORY)/doxygen/footer.html
+HTML_EXTRA_STYLESHEET   = $(DOXYGEN_SITE_DIRECTORY)/doxygen/openroadcode-doxygen.css
 GENERATE_TREEVIEW       = YES
 DISABLE_INDEX           = NO
 SEARCHENGINE            = YES

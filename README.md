@@ -24,9 +24,11 @@ The Pages workflow publishes two documentation sets:
 To generate the API reference locally, install Doxygen and run:
 
 ```bash
+cd "$(mktemp -d)"
+DOXYGEN_SITE_DIRECTORY=/path/to/openroadcode-site \
 DOXYGEN_INPUT_DIRECTORY=/path/to/OpenRoadCode \
 DOXYGEN_OUTPUT_DIRECTORY=/tmp/openroadcode-doxygen \
-doxygen Doxyfile
+doxygen /path/to/openroadcode-site/Doxyfile
 ```
 
 Open `/tmp/openroadcode-doxygen/html/index.html`.

@@ -70,10 +70,16 @@ jobs:
       - name: Generate API reference
         working-directory: website
         env:
+          DOXYGEN_SITE_DIRECTORY: ${{ github.workspace }}/website
           DOXYGEN_INPUT_DIRECTORY: ${{ github.workspace }}/source
           DOXYGEN_OUTPUT_DIRECTORY: ${{ runner.temp }}/openroadcode-doxygen
         run: |
-          doxygen Doxyfile
+          # Keep website filenames out of Doxygen's relative Markdown link lookup.
+          doxygen_workdir="$(mktemp -d)"
+          (
+            cd "$doxygen_workdir"
+            doxygen "${DOXYGEN_SITE_DIRECTORY}/Doxyfile"
+          )
 
           echo "Generated Doxygen HTML:"
           find "${DOXYGEN_OUTPUT_DIRECTORY}/html" -maxdepth 1 -type f -print
