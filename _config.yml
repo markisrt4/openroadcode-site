@@ -9,6 +9,7 @@ permalink: pretty
 
 exclude:
   - Doxyfile
+  - doxygen/Doxyfile.forge
   - README.md
   - LICENSE
   - vendor
